@@ -1,0 +1,10 @@
+Crear un csv con los pokemons que se van ver en el tablero.
+Cocger a los pokemons del CSV que se vana  ver en el tablero.
+Damos la posicion a los pokemons en el tablero.
+Cargo los pokemon en el tablero.
+Genero un archivo csv nuevo que va a guardar todos los datos de los pokemons, incluidos las nuevas posiciones.
+Añadir un boton reiniciar que eliminará el archivo csv sie ste ya existe para reinicializar.
+
+
+
+Hacer bucles con get_pokemonFromCSV y get position, para asegurarme dos arrays y dos posiciones?

@@ -1,0 +1,104 @@
+@import url(https://fonts.googleapis.com/css?family=Questrial:regular);
+
+*,::before,::after {
+  box-sizing: border-box;
+}
+
+body{
+  display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.contenedor{
+  position: relative; 
+  border-radius: 0 0 10px 10px; /* Redondear esquinas inferiores izquierda y derecha */
+}
+
+table {
+    table-layout: fixed; /* Fijar el diseño de la tabla */
+    width: 50rem; /* Ancho total de la tabla */
+    border-collapse:collapse;
+    
+    font-family:'Questrial',Arial, Helvetica, sans-serif ;
+  }
+  
+  th{
+    padding:2rem;
+    font-weight: 700;
+    font-size: 2.5rem;
+    background-image: linear-gradient(to right, #ff4241, #ad1716);
+    border: 1px solid black;
+  }
+  table>tbody td {
+    width: 80px; /* Ancho fijo para las celdas */
+    height: 80px; /* Alto fijo para las celdas */
+    border: 0.2px solid black; /* Añadir bordes para una mejor visualización */
+    text-align: center; /* Centrar contenido dentro de las celdas */
+    
+  }
+  
+  table img {
+    max-width: 100%; /* Hacer que las imágenes se ajusten al ancho de la celda */
+    max-height: 100%; /* Hacer que las imágenes se ajusten al alto de la celda */
+    display: block; /* Evitar espacios en blanco no deseados debajo de las imágenes */
+    margin: 0 auto; /* Centrar las imágenes horizontalmente */
+  }
+
+  table tfoot{
+    background-image: linear-gradient(to left, #ff4241, #ad1716);
+    
+  }
+
+  table>tfoot td{
+    width: 80px;
+    height: 80px;
+    
+    font-family: 'Questrial',Arial, Helvetica, sans-serif;
+    font-size: 2.5rem;
+    text-align: center;
+    margin-bottom: 3rem;
+  }
+  
+
+  .pokeball1{
+    position: absolute;
+    top: 2rem;
+    left: .5rem;
+  }
+  .pokeball2{
+    position: absolute;
+    top: 2rem;
+    right: .5rem;
+  }
+  .pokeball3{
+    position: absolute;
+    bottom: 1rem;
+    left: .5rem;
+  }
+  .pokeball4{
+    position: absolute;
+    bottom: 1rem;
+    right: .5rem;
+  }
+
+  .pokeball4 img,
+  .pokeball3 img,
+  .pokeball2 img,
+  .pokeball1 img{
+
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+  }  
+tfoot{
+  border: 1px solid black;
+}
+
+.hayPokemon{
+  background-image: radial-gradient(circle, #b27b56, #ad6d4f);
+}
+
+.noHayPokemon{
+  
+  background-image: radial-gradient(circle, #93b264, #779756);
+}

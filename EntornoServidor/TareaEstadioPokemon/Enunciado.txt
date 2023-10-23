@@ -1,0 +1,10 @@
+Se trata de realizar una página en la que se muestre un tablero de juego o estadio Pokemon.
+
+El estadio consiste en una estructura de tipo tabla HTML sobre la cuál se van a situar 4 pokemons escogidos aleatoriamente.
+
+En primer lugar deberás decidir la estructura en la que almacenar los pokemons. Puedes sacar la información de cada pokemon del siguiente servicio web: 
+https://pokeapi.co/.
+
+Luego escoge aleatoriamente 6 pokemons y, finalmente, píntalos en la estructura adecuada.
+
+Nota: Si lo consideras, puedes sustituir la temática de la aplicación por otra que te resulte más atractiva.

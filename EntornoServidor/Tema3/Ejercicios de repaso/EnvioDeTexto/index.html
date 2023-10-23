@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Envio de texto</title>
+    <link rel="stylesheet" href="https://cdn.simplecss.org/simple.min.css">
+    <script defer src="code.js"></script>
+</head>
+<body>
+    <header><h1>Envio de datos</h1><p>Crea un formulario HTML con un campo de entrada de texto. 
+        Envía el texto ingresado a un archivo PHP que mostrará el texto en la página.
+        Se marcará con un checkbox si le gusta mas el texto1 o el texto2</p></header>
+        <main>
+            <form action="procesar.php" method="POST" enctype="multipart/form-data">
+                <label for="nombre">Nombre:</label>
+                <input type="text" id="nombre" name="nombre"><br><br>
+            
+                <label for="texto1">Texto 1:</label>
+                <input type="text" id="texto1" name="texto1"><br><br>
+            
+                <label for="texto2">Texto 2:</label>
+                <input type="text" id="texto2" name="texto2"><br><br>
+
+                <label for="gusta1">Me gusta el texto 1
+                    <input type="checkbox" name="gusta1" id="gusta1">
+                </label>
+                <label for="gusta2">Me gusta le texto 2
+                    <input type="checkbox" name="gusta2" id="gusta2">
+                </label>
+
+            
+                <input type="submit" name="enviar" value="enviar">
+            </form>
+        </main>
+</body>
+</html>

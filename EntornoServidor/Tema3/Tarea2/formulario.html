@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdn.simplecss.org/simple.min.css">
+</head>
+<body>
+    <h1>Tarea 2</h1>
+    <p>Realizar un formulario post, en html, que envie un numero al documento index.php y este cuando lo reciba debe crear
+        un select con el numero de opciones que haya introducido el usuario. Es decir, si el usuario introduce 3, el 
+        documento.php devolverá un select con 3 opciones.
+    </p>
+    <form action="index.php" method="post">
+        <p>Introduce un numero del 1 al 10: </p>
+        <input type="number" id="textNumero" name="textNumero"> 
+        <input type="submit" value="enviar">       
+    </form>
+</body>
+</html>
