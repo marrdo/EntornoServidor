@@ -31,10 +31,8 @@ function write_pokemon_in_CSV($pokemonData = array())
     /**Eliminamos el archivo si existe, si no lo creamos y sobreescribimos. */
     if (file_exists($archivoCSV)) {
         if (unlink($archivoCSV)) {
-            echo "El archivo pokemonAleatorios se ha eliminado correctamente.<br>";
-        } else {
-            echo "No se pudo eliminar el archivo pokemonAleatorios.<br>";
-        }
+            /**Se borra el archivo. */
+        } 
     }
     $csvFile = fopen($archivoCSV, 'w');
 
@@ -44,7 +42,7 @@ function write_pokemon_in_CSV($pokemonData = array())
     }
 
     fclose($csvFile);
-    echo "El archivo pokemonAleatorios se ha creado correctamente.<br>";
+    
 }
 //Capturar los pokemons del CSV
 function get_pokemons_from_csv()
@@ -83,7 +81,7 @@ function creacion_de_checks($pokemonsCSV)
     $content .= '<h2>Selecciona 4 pokemons</h2>';
     $content .= '<ul>';
     foreach ($pokemonsCSV as $pokemon) {
-        $content .= '<li><label><span>' . $pokemon['name'] . '</span><input type="checkbox" name="pokemon[]" value="' . $pokemon['id'] . '"></label></li>';
+        $content .= '<li><label><span>' . $pokemon['name'] . '</span><input class="checks" type="checkbox" name="pokemon[]" value="' . $pokemon['id'] . '"></label></li>';
     }
     $content .= '</ul>';
     $content .= '<input type="submit" value="Redi pa las tortas" name="submit"> ';
@@ -157,11 +155,13 @@ function generarCartas($pokemonsUser, $pokemonsPC)
     $content .= "<h2>Pokemon del usuario</h2>";
     foreach ($pokemonsUser as $pokemon) {
         $content .= '<div class="pokemon-card">
+        <figure>
         <img class="pokemon-img" src="' . $pokemon['sprite'] . '" alt="' . $pokemon['name'] . '">
-        <p>' . $pokemon['name'] . '</p>
-        <p>Tipo: ' . $pokemon['type'] . '
-        Hp: ' . $pokemon['hp'] . '
-        Attack: ' . $pokemon['attack'] . '</p>
+        <figcaption>' . $pokemon['name'] . '</figcaption>
+        </figure>
+        <p>Tipo: ' . $pokemon['type'] . '</p><br>
+        <p>Hp: ' . $pokemon['hp'] . '</p><br>
+        <p>Attack: ' . $pokemon['attack'] . '</p>
         </div>';
     }
     $content .= '</div>';
@@ -171,12 +171,14 @@ function generarCartas($pokemonsUser, $pokemonsPC)
     $content .= "<h2>Pokemon del Ordenador</h2>";
     foreach ($pokemonsPC as $pokemon) {
         $content .= '<div class="pokemon-card">
-    <img class="pokemon-img" src="' . $pokemon['sprite'] . '" alt="' . $pokemon['name'] . '">
-    <p>' . $pokemon['name'] . '</p>
-    <p>Tipo: ' . $pokemon['type'] . '
-    Hp: ' . $pokemon['hp'] . '
-    Attack: ' . $pokemon['attack'] . '</p>
-    </div>';
+        <figure>
+        <img class="pokemon-img" src="' . $pokemon['sprite'] . '" alt="' . $pokemon['name'] . '">
+        <figcaption>' . $pokemon['name'] . '</figcaption>
+        </figure>
+        <p>Tipo: ' . $pokemon['type'] . '</p><br>
+        <p>Hp: ' . $pokemon['hp'] . '</p><br>
+        <p>Attack: ' . $pokemon['attack'] . '</p>
+        </div>';
     }
     $content .= '</div>';
 
