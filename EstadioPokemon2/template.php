@@ -27,6 +27,14 @@
             ?>
         </div>
 
+        <div id="seleccionPelea">
+            <?php 
+                if (isset($botonesPelea) && !empty($botonesPelea)) {
+                    print $botonesPelea;
+                }
+            ?>
+        </div>
+
         <div id="tablero"><?php
 
                             // Verificar si $generarTablero está definido y no está vacío

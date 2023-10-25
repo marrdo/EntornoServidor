@@ -147,20 +147,20 @@ function assign_positions($pokemons, $posicion)
 
     return $pokemons;
 }
-
+//Generamos las cartas para ver la info de los pokemons
 function generarCartas($pokemonsUser, $pokemonsPC)
 {
     //Comienza div de user
     $content = '<div class="pokemon-user">';
-    $content .= "<h2>Pokemon del usuario</h2>";
+    $content .= "<h4>Pokemon del usuario</h4>";
     foreach ($pokemonsUser as $pokemon) {
         $content .= '<div class="pokemon-card">
         <figure>
         <img class="pokemon-img" src="' . $pokemon['sprite'] . '" alt="' . $pokemon['name'] . '">
         <figcaption>' . $pokemon['name'] . '</figcaption>
         </figure>
-        <p>Tipo: ' . $pokemon['type'] . '</p><br>
-        <p>Hp: ' . $pokemon['hp'] . '</p><br>
+        <p>Tipo: ' . $pokemon['type'] . '</p>
+        <p>Hp: ' . $pokemon['hp'] . '</p>
         <p>Attack: ' . $pokemon['attack'] . '</p>
         </div>';
     }
@@ -168,15 +168,15 @@ function generarCartas($pokemonsUser, $pokemonsPC)
 
     //comienza div de pc
     $content .= '<div class="pokemon-pc">';
-    $content .= "<h2>Pokemon del Ordenador</h2>";
+    $content .= "<h4>Pokemon del Ordenador</h4>";
     foreach ($pokemonsPC as $pokemon) {
         $content .= '<div class="pokemon-card">
         <figure>
         <img class="pokemon-img" src="' . $pokemon['sprite'] . '" alt="' . $pokemon['name'] . '">
         <figcaption>' . $pokemon['name'] . '</figcaption>
         </figure>
-        <p>Tipo: ' . $pokemon['type'] . '</p><br>
-        <p>Hp: ' . $pokemon['hp'] . '</p><br>
+        <p>Tipo: ' . $pokemon['type'] . '</p>
+        <p>Hp: ' . $pokemon['hp'] . '</p>
         <p>Attack: ' . $pokemon['attack'] . '</p>
         </div>';
     }
@@ -185,5 +185,77 @@ function generarCartas($pokemonsUser, $pokemonsPC)
     //Devolvemos la variable
     return $content;
 }
+//Generamos el estadios con los pokemons en sus posiciones
+function estadio_Pokemon($pokemonsUser,$pokemonsPC)
+{
+    $pokemons_pintar=array_merge($pokemonsUser,$pokemonsPC);
+    $posicion=1;
+    $pintar = '<table>';
 
+    $pintar .= '<thead><tr><th colspan="6">Estadio Pokemon</th></tr></thead>';
+    $pintar .= '<tbody>';
+    /*Pintar el tablero*/ 
 
+    for ($i = 1; $i <= 6; $i++) {
+        $pintar .= '<tr>';
+        for ($j = 1; $j <= 6; $j++) {
+    
+            $pokemon = null;
+            
+            // Buscar el Pokémon en $pokemons_pintar con la posición actual
+            $filteredPokemons = array_filter($pokemons_pintar, function($pokemon) use ($posicion) {
+                return $pokemon['position'] == $posicion;
+            });
+    
+            if (!empty($filteredPokemons)) {
+                // Si se encontró un Pokémon, obtén el primero (reset)
+                $pokemon = reset($filteredPokemons);
+            }
+    
+            // Ahora puedes utilizar $pokemon para hacer algo con el Pokémon encontrado o no encontrado
+            if ($pokemon) {
+                $pintar .= '<td id="' . $posicion . '"><img src="' . $pokemon['sprite'] . '" alt="' . $pokemon['name'] . '"></td>';
+            } else {
+                $pintar .= '<td id="' . $posicion . '"></td>';
+            }
+    
+            $posicion++;
+        }
+        $pintar .= '</tr>';
+    }
+
+    return $pintar;
+}
+//Seleccionamos los pokemons que vamos a enfrentar
+function seleccion_de_luchadores($pokemonsUser,$pokemonsPC)
+{
+    
+    $output = '<h4>Elige a quien le pegas</h4>';
+    $output .= '<form action="ganadores.php" method="post">';
+    //Boton de usuario
+    $output .= '<div class="btnUser">';
+    $output .= '<h6>Pokemons Usuario</h6>';
+    for($i=0;$i<4;$i++){
+        $output .= '<select name="pokemons_User[]">';
+        foreach($pokemonsUser as $pokemon){
+            $output .= '<option value="'.$pokemon['id'].'">'.$pokemon['name'].'</option>';
+        }
+        $output .= '</select>';
+    }
+    $output .= '</div>';
+    //Boton maquina
+    $output .= '<div class="btnMaquina">';
+    $output .= '<h6>Pokemons Maquina</h6>';
+    for($i=0;$i<4;$i++){
+        $output .= '<select name="pokemons_Pc[]">';
+        foreach($pokemonsPC as $pokemon){
+            $output .= '<option value="'.$pokemon['id'].'">'.$pokemon['name'].'</option>';
+        }
+        $output .= '</select>';
+    }
+    $output .= '</div>';
+    $output .= '<input type="submit" value="Comienza el combate" name="submit"> ';
+    $output .= '</form>';
+
+    return $output;
+}

@@ -21,3 +21,5 @@ Desarrollar un duelo entre pokemons. La dinámica general de la aplicación es l
 
 La información de victorias y derrotas máquina - usuario podrá ser grabada en un
  archivo y consultada accediendo al script correspondiente.
+
+ 

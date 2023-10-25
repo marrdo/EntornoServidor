@@ -24,8 +24,10 @@ $pokemonsPC = assign_positions($pokemonsPC, $posicionPC);
 $generarCartas=generarCartas($pokemonsUser,$pokemonsPC);
 
 //Generamos el estadio
+$generarTablero=estadio_Pokemon($pokemonsUser,$pokemonsPC);
 
-
+//Generamos los Select para elegir los pokemons que van a pelear.
+$botonesPelea=seleccion_de_luchadores($pokemonsUser,$pokemonsPC);
 
 
 //  /** 
