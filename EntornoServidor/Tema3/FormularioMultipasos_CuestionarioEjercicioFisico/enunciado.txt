@@ -1,0 +1,35 @@
+Hacer un formulario multipasos que se haga con sesiones.
+Recoge la info en distintos pasos.
+puede ser una app que pida 1paso, un objetivo de mejoa en al vida.
+que quieres mejorar, paso1 si queires mejorar sentadillas pot al cosa,
+si eliges eso, te manda un objetivo, y te pide en que punto estas.
+se va a hacer en un solo Script.
+1 pantalla:
+que quieres mejorar.
+dar varias opciones.
+squat,
+pull up
+push up
+un boton, solo a siguiente.
+
+el contenido del segundo paso dependera de lo seleccionado en el primero.
+2 paso pedir situacion actual, 
+cuantas sentadilla realizas. kg repeticiones.
+depende la pantalla de la opcion que se ha elegido.
+2paso dos botones, anterior y siguiente.
+
+3paso
+tu mejora es:
+depende de la option
+
+
+
+boton anterior y siguiente
+
+4paso 
+finalmente se piden los datos
+email nombre y demas.
+
+
+5paso
+y luego se le muestran todos sus datos.
