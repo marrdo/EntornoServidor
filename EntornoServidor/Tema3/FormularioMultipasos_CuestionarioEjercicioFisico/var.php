@@ -5,7 +5,7 @@ $formulario=array(
     1=>array(
         '<form action="index.php" method="POST" enctype="multipart/form-data">',
         '<fieldset>',
-        '<legend><h2>¿Qué quieres mejorar?</h2></legend>',
+        '<legend>¿Qué quieres mejorar?</legend>',
         '<label><input type="radio" name="ejercicio" value="squat">Sentadillas</label>',
         '<label><input type="radio" name="ejercicio" value="pull up">Dominadas</label>',
         '<label><input type="radio" name="ejercicio" value="deadlift">Peso muerto</label>',
@@ -16,7 +16,7 @@ $formulario=array(
     2=>array(
         '<form action="index.php" method="POST" enctype="multipart/form-data">',
         '<fieldset>',
-        '<legend><h2>Rendimiento actual</h2></legend>',
+        '<legend>Rendimiento actual</legend>',
         '<label>Peso del levantamiento: <input type="number" name="kg">Kg</label>',
         '<label>Repecitiones al fallo: <input type="number" name="repeticiones">Reps</label>',
         '</fieldset>',
@@ -26,6 +26,23 @@ $formulario=array(
     ),
     3=>array(
         '<form action="index.php" method="POST" enctype="multipart/form-data">',
+        '<fieldset>',
+        '<legend>¿Quiere continuar con el plan de mejora personalizado?</legend>',
+        '<label>Si <input type="radio" name="decision" value="si"></label>',
+        '<label>No <input type="radio" name="decision" value="no"></label>',
+        '</fieldset>',
+        '<input type="submit" name="volver" value="Anterior">',
+        '<input type="submit" name="enviar_datos" value="Siguiente">', 
+        '</form>'
+    ),
+    4=>array(
+        '<form action="index.php" method="POST" enctype="multipart/form-data">',
+        '<fieldset>',
+        '<legend>Introduzca sus datos.</legend>',
+        '<label>Nombre: <input type="text" name="name" required></label>',
+        '<label>Email: <input type="email" name="email" required></label>',
+        '<label>Nombre: <input type="text" name="name" required></label>',
+        '</fieldset>',
         '<input type="submit" name="volver" value="Anterior">',
         '<input type="submit" name="enviar_datos" value="Siguiente">', 
         '</form>'
@@ -34,22 +51,23 @@ $formulario=array(
 
 $planmejora=array(
     'squat'=>array(
-        'principiante'=>'Necesitas correr,hacer menos repeticiones con mas kg',
-        'intermedio'=>'Programar menos repeticiones y mas kg, con variantes del movimiento',
-        'avanzado'=>'Ejecutar ejercicios preventivos y buscar RMs en series cortas'
+        'principiante'=>'Necesitas correr,hacer menos repeticiones con mas kg.',
+        'intermedio'=>'Programar menos repeticiones y mas kg, con variantes del movimiento.',
+        'avanzado'=>'Ejecutar ejercicios preventivos y buscar RMs en series cortas.'
     ),
     'pull up'=>array(
-        'principiante'=>'Entrenar hombros y remo en anillas, con alguna dominada negativa',
-        'intermedio'=>'Pasar de hacer kipping a butterfly y estrictas con algo de lastre',
+        'principiante'=>'Entrenar hombros y remo en anillas, con alguna dominada negativa.',
+        'intermedio'=>'Pasar de hacer kipping a butterfly y estrictas con algo de lastre.',
         'avanzado'=>'Hacer pocas con mucho lastre para aumentar la fuerza.'
     ),
     'deadlift'=>array(
-        'principiante'=>'Mejorar la tecnica para cargar mas kg',
+        'principiante'=>'Mejorar la tecnica para cargar mas kg.',
         'intermedio'=>'Aprender a trrabajar con el core e intentar RMs mas altos.',
-        'avanzado'=>'Buscar RMs en muchas series muy cortas con intervalos largos de descanso'
+        'avanzado'=>'Buscar RMs en muchas series muy cortas con intervalos largos de descanso.'
 
     )
 );
+
 
 ?>
 

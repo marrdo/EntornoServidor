@@ -35,49 +35,23 @@ echo '</pre>';
 if ($paso == 1) {
 
     $pintar_formulario = draw_form($formulario, $paso);
-
 } elseif ($paso == 2) {
 
-    if (count($_SESSION) > 1) {
-        foreach ($_SESSION as $campo=>$valor) {
-            if ($campo != 'paso') {
-                unset($_SESSION[$campo] );
-            }
-        }
-    }
 
 
     if (isset($_POST['ejercicio'])) {
         $ejercicio = $_POST['ejercicio'];
-        $user_data['ejercicio']=$ejercicio;
+        $user_data['ejercicio'] = $ejercicio;
     }
     $_SESSION['ejercicio'] = $ejercicio;
 
 
 
-    /*Debugger*/
-    echo '<pre>';
-    print_r($_SESSION);
-    echo '</pre>';
+   
     $pintar_formulario = draw_form($formulario, $paso);
 
 } elseif ($paso == 3) {
 
-    if (count($_SESSION) > 2) {
-        foreach ($_SESSION as $campo=>$valor) {
-            if (($campo != 'paso') || ($campo != 'ejercicio')) {
-                unset($_SESSION[$campo] );
-            }
-        }
-    }
-
-    if (count($user_data) > 1) {
-        foreach ($_SESSION as $campo=>$valor) {
-            if (($campo != 'ejercicio')) {
-                unset($_SESSION[$campo] );
-            }
-        }
-    }
 
     if (isset($_POST)) {
         $_SESSION['kg'] = $_POST['kg'];
@@ -87,23 +61,59 @@ if ($paso == 1) {
     $kg = $_SESSION['kg'];
     $reps = $_SESSION['repeticiones'];
     $ejercicio = $_SESSION['ejercicio'];
-    $_SESSION['ejercicio']=$ejercicio;
+    $_SESSION['ejercicio'] = $ejercicio;
 
-    $rendimiento=determinar_estado($ejercicio,$kg,$reps);
-    $plazo=determinar_plazo($rendimiento,$ejercicio);
+    $rendimiento = determinar_estado($ejercicio, $kg, $reps);
+    $plazo = determinar_plazo($rendimiento, $ejercicio);
 
-    
-    /*DEBUGGER*/
-    echo '<pre>';
-    echo 'Array post<br>Repeticiones:';
-    print_r($reps);
-    echo '<br>';
-    print_r($kg);
-    echo ' KG<br>';
-    echo 'Array sesion <br>Ejercicio: ';
-    print_r($ejercicio);
-    echo '</pre>';
+    $_SESSION['rendimiento'] = $rendimiento;
+    $_SESSION['plazo'] = $plazo;
+
+    $pintar_plan_mejora = print_planes_mejora($ejercicio, $rendimiento, $plazo, $planmejora);
     $pintar_formulario = draw_form($formulario, $paso);
+
+} elseif ($paso == 4) {
+
+     /*Debugger*/
+     echo '<pre>POSTTTTTTTT ';
+     print_r($_POST);
+     echo '</pre>';
+     $pintar_formulario = '';
+     $no=$_POST['decisicion'] == 'no';
+     $si=$_POST['decision'] == 'si';
+    if (isset($_POST['decisicion'])) {
+        if ($no) {
+            $decision = '<h3>Gracias, hasta otra.</h3>';
+            $_SESSION['paso']=0;
+            /*Debugger*/
+    
+        } elseif($si) {
+            $_SESSION['rendimiento'] = $rendimiento;
+            $_SESSION['plazo'] = $plazo;
+            $_SESSION['ejercicio'] = $ejercicio;
+            $_SESSION['kg'] = $kg ;
+            $_SESSION['repeticiones'] = $reps;
+            $pintar_formulario = draw_form($formulario, $paso);
+            
+        }
+        
+        /*Debugger*/
+        echo '<pre>';
+        print_r($_SESSION);
+        echo '</pre>';
+    }
+
+
+    /*POST
+     [decision] => si
+    [enviar_datos] => Siguiente
+    */
+    /*Sesion
+    [paso] => 4
+    [ejercicio] => squat
+    [kg] => 100
+    [repeticiones] => 2
+    */
 }
 
 

@@ -15,7 +15,7 @@ function determinar_estado($ejercicio, $kg, $reps)
             }
             break;
 
-        case 'pull up"':
+        case 'pull up':
             if ($reps<5 && $kg<65) {
                 return 'principiante';
             }elseif ($reps>15 && $kg>15) {
