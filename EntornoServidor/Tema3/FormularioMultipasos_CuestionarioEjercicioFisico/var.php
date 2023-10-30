@@ -17,8 +17,8 @@ $formulario=array(
         '<form action="index.php" method="POST" enctype="multipart/form-data">',
         '<fieldset>',
         '<legend>Rendimiento actual</legend>',
-        '<label>Peso del levantamiento: <input type="number" name="kg">Kg</label>',
-        '<label>Repecitiones al fallo: <input type="number" name="repeticiones">Reps</label>',
+        '<label>Peso del levantamiento: <input type="number" name="kg" required>Kg</label>',
+        '<label>Repecitiones al fallo: <input type="number" name="repeticiones" required>Reps</label>',
         '</fieldset>',
         '<input type="submit" name="volver" value="Anterior">',
         '<input type="submit" name="enviar_datos" value="Siguiente">',        
@@ -32,7 +32,7 @@ $formulario=array(
         '<label>No <input type="radio" name="decision" value="no"></label>',
         '</fieldset>',
         '<input type="submit" name="volver" value="Anterior">',
-        '<input type="submit" name="enviar_datos" value="Siguiente">', 
+        '&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;<input type="submit" name="enviar_datos" value="Siguiente">', 
         '</form>'
     ),
     4=>array(
@@ -41,11 +41,25 @@ $formulario=array(
         '<legend>Introduzca sus datos.</legend>',
         '<label>Nombre: <input type="text" name="name" required></label>',
         '<label>Email: <input type="email" name="email" required></label>',
-        '<label>Nombre: <input type="text" name="name" required></label>',
+        '<label>Edad: <input type="text" name="edad" required></label>',
         '</fieldset>',
         '<input type="submit" name="volver" value="Anterior">',
-        '<input type="submit" name="enviar_datos" value="Siguiente">', 
+        '&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;<input type="submit" name="enviar_datos" value="Siguiente">', 
         '</form>'
+    ),
+    5=>array(
+        '<article>',
+        '<h3>Datos del usuario</h3><br>',
+        '<p>Nombre: '.isset($name).'</p><br>',
+        '<p>Email: '.isset($email).'</p><br>',
+        '<p>Edad: '.isset($edad).'</p><br>',
+        '</article>',
+        '<article>',
+        '<p>Ejercicio a mejorar: '.isset($ejercicio).'</p><br>',
+        '<p>Rango en el que se encuentra: '.isset($rendimiento).'</p><br>',
+        '<p>Medicion de peso maximo:  '.isset($kg).' y repeticiones al fallo: '.isset($repeticiones).'</p><br>',
+        '<p>Plazo de mejoria: '.isset($plazo).'</p><br>',
+        '</article>'
     )
 );
 

@@ -34,6 +34,6 @@
                 echo $pintar_formulario;
             }
         ?>
-    </section>
+    </section>    
 </body>
 </html>
