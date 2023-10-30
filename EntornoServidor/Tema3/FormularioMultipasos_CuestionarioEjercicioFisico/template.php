@@ -11,8 +11,16 @@
     <h1>Ejercicio formulario multipasos en INDEX</h1>
     <section class="paso1">
         <?php 
-            if((isset($_SESSION['paso'])) && (!empty($_SESSION['paso'])) && ($_SESSION['paso']=1)){
-                $pintar_formulario;
+            if((isset($_SESSION['paso']))  && ($_SESSION['paso']==1)){
+                echo $pintar_formulario;
+            }elseif((isset($_SESSION['paso']))  && ($_SESSION['paso']==2)){
+                echo $pintar_formulario;
+            }elseif((isset($_SESSION['paso']))  && ($_SESSION['paso']==3)){
+                echo $pintar_formulario;
+            }elseif((isset($_SESSION['paso']))  && ($_SESSION['paso']==4)){
+                echo $pintar_formulario;
+            }elseif((isset($_SESSION['paso']))  && ($_SESSION['paso']==5)){
+                echo $pintar_formulario;
             }
         ?>
     </section>
