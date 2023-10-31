@@ -3,6 +3,7 @@ ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
+session_start();
 require('functions.php');
 $pokemonsCSV = get_pokemons_from_csv();
 $pokemonsPC = get_pokemons_computer($pokemonsCSV);
@@ -29,7 +30,14 @@ $generarTablero=estadio_Pokemon($pokemonsUser,$pokemonsPC);
 //Generamos los Select para elegir los pokemons que van a pelear.
 $botonesPelea=seleccion_de_luchadores($pokemonsUser,$pokemonsPC);
 
-
+foreach($pokemonsUser as $id => $dato){
+    
+    $_SESSION['pokemones'][$id]=[$dato]; 
+}
+// foreach($pokemonsPC as $pokemon){
+    
+//     $_SESSION[$pokemonsPC]=[$pokemon]; 
+// }
 //  /** 
 //   * Debugger
 //   */
