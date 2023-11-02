@@ -17,14 +17,13 @@ if (!isset($_SESSION['paso'])) {
  * para seguir recorriendo el array
  * 
  */
-if(isset($_POST['decision'])){
-    
-    $decision=$_POST['decision'];
-    $no='no';
-    if($decision == $no ){
+if (isset($_POST['decision'])) {
 
-        $_SESSION['paso'] = 0; 
-        
+    $decision = $_POST['decision'];
+    $no = 'no';
+    if ($decision == $no) {
+
+        $_SESSION['paso'] = 0;
     }
 }
 
@@ -44,17 +43,15 @@ print_r($paso);
 echo '</pre>';
 if ($paso == 1) {
 
-     /*Debugger*/
-     echo '<pre>POST<br>';
-     print_r($_POST);
-     echo '<br>Sesion<br>';
-     print_r($_SESSION);
-     echo '</pre>';
+    /*Debugger*/
+    // echo '<pre>POST<br>';
+    // print_r($_POST);
+    // echo '<br>Sesion<br>';
+    // print_r($_SESSION);
+    // echo '</pre>';
 
 
     $pintar_formulario = draw_form($formulario, $paso);
-
-
 } elseif ($paso == 2) {
 
 
@@ -67,17 +64,14 @@ if ($paso == 1) {
     $_SESSION['ejercicio'] = $ejercicio;
 
 
-     /*Debugger*/
-     echo '<pre>POST<br>';
-     print_r($_POST);
-     echo '<br>Sesion<br>';
-     print_r($_SESSION);
-     echo '</pre>';
-   
+    /*Debugger*/
+    // echo '<pre>POST<br>';
+    // print_r($_POST);
+    // echo '<br>Sesion<br>';
+    // print_r($_SESSION);
+    // echo '</pre>';
+
     $pintar_formulario = draw_form($formulario, $paso);
-
-
-
 } elseif ($paso == 3) {
 
 
@@ -98,63 +92,72 @@ if ($paso == 1) {
     $_SESSION['plazo'] = $plazo;
 
 
-     /*Debugger*/
-     echo '<pre>POST<br>';
-     print_r($_POST);
-     echo '<br>Sesion<br>';
-     print_r($_SESSION);
-     echo '</pre>';
+    /*Debugger*/
+    // echo '<pre>POST<br>';
+    // print_r($_POST);
+    // echo '<br>Sesion<br>';
+    // print_r($_SESSION);
+    // echo '</pre>';
 
     $pintar_plan_mejora = print_planes_mejora($ejercicio, $rendimiento, $plazo, $planmejora);
     $pintar_formulario = draw_form($formulario, $paso);
-
-
-
-
-
 } elseif ($paso == 4) {
 
-     /*Debugger*/
-    echo '<pre>POST<br>';
-    print_r($_POST);
-    echo '<br>Sesion<br>';
-    print_r($_SESSION);
-    echo '</pre>';
+    /*Debugger*/
+    // echo '<pre>POST<br>';
+    // print_r($_POST);
+    // echo '<br>Sesion<br>';
+    // print_r($_SESSION);
+    // echo '</pre>';
 
-     
-    $ejercicio=$_SESSION['ejercicio'];
-    $kg=$_SESSION['kg'];
-    $repeticiones=$_SESSION['repeticiones'];
-    $rendimiento=$_SESSION['rendimiento'];
-    $plazo=$_SESSION['plazo'];
-        
-    
+
+    $ejercicio = $_SESSION['ejercicio'];
+    $kg = $_SESSION['kg'];
+    $repeticiones = $_SESSION['repeticiones'];
+    $rendimiento = $_SESSION['rendimiento'];
+    $plazo = $_SESSION['plazo'];
+
+
     $pintar_formulario = draw_form($formulario, $paso);
-            
+} elseif ($paso == 5) {
+    /*Debugger*/
+    // echo '<pre>POST<br>';
+    // print_r($_POST);
+    // echo '<br>Sesion<br>';
+    // print_r($_SESSION);
+    // echo '</pre>';
 
-}elseif ($paso == 5) {
-     /*Debugger*/
-     echo '<pre>POST<br>';
-     print_r($_POST);
-     echo '<br>Sesion<br>';
-     print_r($_SESSION);
-     echo '</pre>';
+    $name = $_POST['name'];
+    $email = $_POST['email'];
+    $edad = $_POST['edad'];
+    $ejercicio = $_SESSION['ejercicio'];
+    $kg = $_SESSION['kg'];
+    $repeticiones = $_SESSION['repeticiones'];
+    $rendimiento = $_SESSION['rendimiento'];
+    $plazo = $_SESSION['plazo'];
+    $guia_mejora=print_planes_mejora($ejercicio, $rendimiento, $plazo,$planmejora);
 
-     $name=$_POST['name'];
-     $email=$_POST['email'];
-     $edad = $_POST['edad'];
-     $ejercicio=$_SESSION['ejercicio'];
-     $kg=$_SESSION['kg'];
-     $repeticiones=$_SESSION['repeticiones'];
-     $rendimiento=$_SESSION['rendimiento'];
-     $plazo=$_SESSION['plazo'];
-
-     $pintar_formulario = draw_form($formulario, $paso);
+    $user_data = array(
+        '<article>',
+        '<h3>Datos del usuario</h3><br>',
+        "<p>Nombre: $name</p><br>",
+        '<p>Email: ' . $email . '</p><br>',
+        '<p>Edad: ' . $edad . '</p><br>',
+        '</article>',
+        '<article>',
+        '<p>Ejercicio a mejorar: ' . $ejercicio . '.</p><br>',
+        '<p>Rango en el que se encuentra: ' . $rendimiento . '</p><br>',
+        '<p>Medicion de peso maximo:  ' . $kg . 'KG y repeticiones al fallo: ' . $repeticiones . 'reps</p><br>',
+        $guia_mejora,
+        '</article>'
+    );
+    $pintar_datos = "";
+    foreach ($user_data as $frase) {
+        $pintar_datos .= $frase;
+    }
 }
 
 
 
 
 require_once('template.php');
-
-?>

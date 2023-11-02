@@ -30,14 +30,9 @@ $generarTablero=estadio_Pokemon($pokemonsUser,$pokemonsPC);
 //Generamos los Select para elegir los pokemons que van a pelear.
 $botonesPelea=seleccion_de_luchadores($pokemonsUser,$pokemonsPC);
 
-foreach($pokemonsUser as $id => $dato){
-    
-    $_SESSION['pokemones'][$id]=[$dato]; 
-}
-// foreach($pokemonsPC as $pokemon){
-    
-//     $_SESSION[$pokemonsPC]=[$pokemon]; 
-// }
+$_SESSION['pokUser'] = $pokemonsUser;
+$_SESSION['pokPC'] = $pokemonsPC;
+
 //  /** 
 //   * Debugger
 //   */

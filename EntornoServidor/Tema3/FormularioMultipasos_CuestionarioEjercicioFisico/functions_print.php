@@ -1,5 +1,7 @@
 <?php
 
+
+
 function draw_form($formulario, $paso)
 {
 

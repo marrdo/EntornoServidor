@@ -21,7 +21,7 @@ $formulario=array(
         '<label>Repecitiones al fallo: <input type="number" name="repeticiones" required>Reps</label>',
         '</fieldset>',
         '<input type="submit" name="volver" value="Anterior">',
-        '<input type="submit" name="enviar_datos" value="Siguiente">',        
+        '&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;<input type="submit" name="enviar_datos" value="Siguiente">',        
         '</form>'
     ),
     3=>array(
@@ -46,20 +46,6 @@ $formulario=array(
         '<input type="submit" name="volver" value="Anterior">',
         '&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;<input type="submit" name="enviar_datos" value="Siguiente">', 
         '</form>'
-    ),
-    5=>array(
-        '<article>',
-        '<h3>Datos del usuario</h3><br>',
-        '<p>Nombre: '.isset($name).'</p><br>',
-        '<p>Email: '.isset($email).'</p><br>',
-        '<p>Edad: '.isset($edad).'</p><br>',
-        '</article>',
-        '<article>',
-        '<p>Ejercicio a mejorar: '.isset($ejercicio).'</p><br>',
-        '<p>Rango en el que se encuentra: '.isset($rendimiento).'</p><br>',
-        '<p>Medicion de peso maximo:  '.isset($kg).' y repeticiones al fallo: '.isset($repeticiones).'</p><br>',
-        '<p>Plazo de mejoria: '.isset($plazo).'</p><br>',
-        '</article>'
     )
 );
 
@@ -82,6 +68,36 @@ $planmejora=array(
     )
 );
 
+// En var.php
+function imprimir_variables() {
+    if (isset($name)) {
+        echo "Name: " . $name . "<br>";
+    }
+
+    if (isset($email)) {
+        echo "Email: " . $email . "<br>";
+    }
+
+    if (isset($edad)) {
+        echo "Edad: " . $edad . "<br>";
+    }
+
+    if (isset($ejercicio)) {
+        echo "Ejercicio: " . $ejercicio . "<br>";
+    }
+
+    if (isset($kg)) {
+        echo "Kg: " . $kg . "<br>";
+    }
+
+    if (isset($rendimiento)) {
+        echo "Rendimiento: " . $rendimiento . "<br>";
+    }
+
+    if (isset($plazo)) {
+        echo "Plazo: " . $plazo . "<br>";
+    }
+}
 
 ?>
 
