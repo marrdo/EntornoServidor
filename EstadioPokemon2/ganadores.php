@@ -50,16 +50,16 @@ $pokemonsUser = array_replace($pokemonsAtacan,$pokemonSelectUser);
 $pokemonPc = array_values($pokemonPc);
 $pokemonsUser = array_values($pokemonsUser);
 
+$pokemonsGanadores = fight($pokemonPc, $pokemonsUser);
 
-
-echo '<pre>';
-    echo 'Pokemons PC<br>';
-    print_r($pokemonPc);
-    echo 'Pokemons Usuario<br>';
-    print_r($pokemonsUser);
-    // echo 'Pokemons PC<br>';
-    // print_r($pokemonSelectPc);
-    // echo 'Pokemons Usuario<br>';
-    // print_r($pokemonSelectUser);
-    echo '</pre>';
+// echo '<pre>';
+// echo 'Pokemons ganadores<br>';
+// print_r($pokemonPc);
+// echo 'Pokemons Usuario<br>';
+// print_r($pokemonsUser);
+// echo 'Pokemons PC<br>';
+// print_r($pokemonSelectPc);
+// echo 'Pokemons Usuario<br>';
+// print_r($pokemonSelectUser);
+// echo '</pre>';
 require_once('template.php');
