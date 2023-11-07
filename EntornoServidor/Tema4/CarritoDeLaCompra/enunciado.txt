@@ -1,0 +1,14 @@
+Realiza una aplicación que funcione como gestora del carro de la compra,
+ bajo inicio de sesión. Una vez logueado, el usuario es conducido a un
+  formulario en el que podrá gestionar los productos que va a comprar.
+
+Cada producto cuenta con un botón + y otro - para sumar o restar una 
+unidad al número de unidades que se van a incluir en el carro. Cuando se 
+pulsa añadir al carrito, ese número de unidades es añadido. El 
+formulario cuenta, adicionalmente, con un botón Ver carrito que 
+conduce al carro de la compra.
+
+En la página del carro de la compra se puede reducir o ampliar 
+directamente el número de unidades de un producto incluidas en él. 
+Si el número de unidades de un producto es 0, el producto debe 
+desaparecer del carrito.
