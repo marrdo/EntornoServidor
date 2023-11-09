@@ -11,16 +11,14 @@ echo '<pre>';
 print_r($_SESSION);
 echo '</pre>';
 
-if ((isset($_SESSION['userName'])) && (isset($_SESSION['userPassword']))) {
+if ((isset($_SESSION['userName']))) {
     $userName = $_SESSION['userName'];
-    $userPassword = $_SESSION['userPassword'];
-    //Debugger
-    // echo '<pre>';
-    // echo 'Nombre: ' . $userName . '<br>';
-    // echo 'Password: ' . $userName;
-    // echo '</pre>';
+    
+}else{
+    header('Location: login.php');
 }
 
-
+$tienda = $arrForm[1];
+$mostrarTienda = mostrarLogin($tienda);
 
 require_once('template.php');
