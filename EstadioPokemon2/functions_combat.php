@@ -1356,7 +1356,7 @@ function fight($pokemonPc, $pokemonsUser)
             ];
 
             // Almacenar el ganador en el array de ganadores
-            $ganaUser[] = &$statGanaUser;
+            $ganaUser[] = $statGanaUser;
             // echo '<pre>';
             // echo '<br>Array de pokemons GANADORES del USER<br>';
             // print_r($pokemonsGanadores['pokemonUser']);
@@ -1384,7 +1384,7 @@ function fight($pokemonPc, $pokemonsUser)
             ];
 
             // Almacenar el ganador en el array de ganadores
-            $ganaPc[] = &$statGanaPc;
+            $ganaPc[] = $statGanaPc;
             
             // echo '<pre>';
             // echo '<br>Array de pokemons GANADORES del PC<br>';
@@ -1414,7 +1414,7 @@ function fight($pokemonPc, $pokemonsUser)
             ];
 
             // Almacenar el ganador en el array de ganadores
-            $ganaUser[] = &$statGanaUser;
+            $ganaUser[] = $statGanaUser;
             //Datos del pc empate
             $statGanaPc = [
                 'id' => $pokemonPc[$i]['id'],
@@ -1423,7 +1423,7 @@ function fight($pokemonPc, $pokemonsUser)
             ];
 
             // Almacenar el ganador en el array de ganadores
-            $ganaPc[] = &$statGanaPc;
+            $ganaPc[] = $statGanaPc;
 
             //Vida restante
             $vidaTotalUsuario = $vidaTotalUsuario + $vidaUser;

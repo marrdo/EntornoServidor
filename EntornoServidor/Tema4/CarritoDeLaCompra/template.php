@@ -9,9 +9,17 @@
 
 <body>
     <section class="login">
-        <?php if (isset($logeo) && !empty($logeo)) {
-            print $logeo;
-        } ?>
+        <article>
+            <?php if (isset($logeo) && !empty($logeo)) {
+                print $logeo;
+            } ?>
+        </article>
+        <article>
+        <?php if (isset($_SESSION['errorMessage'])) {
+                echo '<h2>' . $_SESSION['errorMessage'] . '</h2>';
+                unset($_SESSION['errorMessage']); // Limpiar el mensaje de error después de mostrarlo
+            } ?>
+        </article>
     </section>
     <section class="tienda">
         <?php
@@ -23,3 +31,5 @@
 </body>
 
 </html>
+
+<input type="number" name="" id="">
