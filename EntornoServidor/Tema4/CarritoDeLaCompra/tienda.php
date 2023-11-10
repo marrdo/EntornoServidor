@@ -18,7 +18,7 @@ if ((isset($_SESSION['userName']))) {
     header('Location: login.php');
 }
 
-$tienda = $arrForm[1];
-$mostrarTienda = mostrarLogin($tienda);
+
+$mostrarTienda = mostrarTienda($productos);
 
 require_once('template.php');
