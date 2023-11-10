@@ -41,12 +41,21 @@ function mostrarTienda($productos = array())
     $output .= '<fieldset>';
     $output .= '<legend>Productos</legend>';
     foreach ($productos as $producto) {
-        $output .= '<p><input type="button" id="rmProduct" value="-"><label for="' . $producto['nombre'] . '"> ' . ucfirst($producto['nombre']) . ': <input type="number" name="' . $producto['nombre'] . '" id="' . $producto['nombre'] . '"> </label><input type="button" id="addProduct" value="+"><label>   El precio por unidad es: <span>' . $producto['precio'] . '</span> </label></p>';
+        $output .= '<p><input type="button" id="rmProduct" value="-"><label for="' . $producto['id'] . '"> ' . ucfirst($producto['nombre']) . ': <input type="number" name="' . $producto['id'] . '" id="' . $producto['id'] . '" value="'.$producto['cantidad'].'"> </label><input type="button" id="addProduct" value="+"><label>   El precio por unidad es: <span>' . $producto['precio'] . '</span> </label></p>';
     }
     $output .= '</fieldset>';
-    $output .= '<input type="submit" value="Añadir al carrito"><br>';
-    $output .= '<input type="submit" value="Ver el carrito">';
+    $output .= '<input type="submit" name="addProduct" value="Añadir al carrito"><br>';
+    $output .= '<input type="submit" name="verCarro" value="Ver el carrito">';
     $output .= '</form>';
 
     return $output;
+}
+
+function llenarCarro($cantidad1=0,$cantidad2=0,$cantidad3=0,$productos){
+    
+    for($i=0;$i<count($productos);$i++){
+        if(($i+1)==$productos[$i]['id']){
+            echo $productos[$i]['nombre'];
+        }
+    }
 }

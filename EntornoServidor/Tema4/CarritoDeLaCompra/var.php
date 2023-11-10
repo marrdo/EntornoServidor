@@ -2,24 +2,26 @@
 
 require_once('functions.php');
 
-$productos = [
-    [
+$productos = array(
+    array(
+        'id' => 1,
         "nombre" => "Leffe blonde",
         "precio" => 2.30,
-
-    ],
-    [
+        'cantidad' => 0,
+    ),
+    array (
+        'id' => 2,
         "nombre" => "Leffe Brunne",
         "precio" => 1.80,
-
-    ],
-    [
+        'cantidad' => 0,
+    ),
+    array(
+        'id' => 3,
         "nombre" => "Leffe Rituel 9",
         "precio" => 2.10,
-
-    ],
-
-];
+        'cantidad' => 0,
+    )
+);
 
 
 $arrForm = array(
@@ -43,3 +45,5 @@ $arrValidUser = array(
     'user' => 'hola',
     'illo' => 'tusabrasporque'
 );
+
+$carrito = array();
