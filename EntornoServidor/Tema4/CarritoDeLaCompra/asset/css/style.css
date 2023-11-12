@@ -1,0 +1,253 @@
+@import url(https://fonts.googleapis.com/css?family=Nobile:regular,italic,500,500italic,700,700italic);
+
+
+:root{
+    --color-amarillo-claro:#fff4e0;
+    --color-amarillo-oscuro:#fdc300;
+    --color-negro:#1f1f1f;
+}
+
+*,::before,::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html{
+    scroll-behavior: smooth;
+}
+
+body{
+    background-color: var(--color-amarillo-claro);
+    font-family: Nobile,sans-serif;
+    color: var(--color-negro);
+    
+}
+
+header{
+    background-color: var(--color-amarillo-oscuro);
+
+
+}
+header h1{
+    text-align: center;
+    margin: 0 auto;
+    padding: 2rem;
+    font-size: 4rem;
+}
+
+.btn{
+    width: max-content;
+    height: max-content;
+    font-size: 1rem;
+    background-color: var(--color-amarillo-oscuro);
+    color: var(--color-negro);
+    cursor: pointer;
+    padding: .5rem;
+    border: solid 2px var(--color-negro);
+    border-radius: 3px;
+    transform: scale(1);
+}
+
+.btn:hover{
+    box-shadow: 3px 3px 5px var(--color-negro);
+    transform: scale(1.1);
+}
+
+main{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    flex-wrap: wrap;
+    padding: 1.5rem;
+    
+}
+.login{
+    margin-block: 2.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 2rem;
+}
+.log{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 1.5rem;
+    width: 100%;
+}
+form{
+    font-weight: 500;
+    color: var(--color-negro);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: 1rem;
+    gap: 2rem;
+    width: 90%;
+}
+
+input[type="text"]{
+    background-color: var(--color-amarillo-claro);
+    color: var(--color-negro);
+    border: 2px solid #fcd100;
+    border-radius: 3px;
+}
+[type="password"]{
+    background-color: var(--color-amarillo-claro);
+    color: var(--color-negro);
+    border: 2px solid #fcd100;
+    border-radius: 3px;
+}
+
+input[type="number"]{
+    background-color: var(--color-amarillo-claro);
+    color: var(--color-negro);
+    border: 2px solid #fcd100;
+    border-radius: 3px;
+}
+input[type="button"]{
+    text-align: center;
+}
+.error{
+    color: #FF0000;
+    font-size: 2rem;
+    margin-block: 2rem;
+}
+footer{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    background: rgb(255,244,224);
+    background: linear-gradient(180deg, rgba(255,244,224,1) 0%, rgba(153,127,80,1) 31%, rgba(51,35,6,1) 100%); 
+    height: 15vh;
+    font-weight: 700;
+}
+.fildForm{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: 1rem;
+}
+.productos{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+}
+form{
+    width: 100%;
+}
+
+.botones{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    gap: 1.5rem;
+}
+img{
+    width: 400px;
+    height: 600px;
+}
+figcaption{
+    text-align: center;
+    font-size: 1rem;
+}
+.seleccionarCantidad{
+    padding: .5rem;
+    text-align: center;
+}
+.circle{
+    border-radius: 50%;
+    width: 35px;
+    height: 40px;
+    text-align: center;
+}
+
+.articleCarrito{
+    display: flex;
+    width: 100%;
+    justify-content: space-around;
+    align-items: normal;
+
+}
+.carro{
+    width: 100%;
+    margin: 1rem;
+    padding: 1rem;
+}
+.formCarro{
+    width: 50%;
+}
+table {
+    width: 50%;
+    border: 3px outset var(--color-negro);
+    border-collapse: collapse;
+ }
+ th, td {
+    width: 15%;
+    text-align: center;
+    border: 3px outset var(--color-negro);
+    border-collapse: collapse;
+    padding: 0.3em;
+ }
+
+ thead, .precio{
+    background-color: var(--color-amarillo-oscuro);
+ }
+ .precio{
+    font-size: 1.3rem;
+    font-weight: 700;
+ }
+
+ .fieldCarro{
+    width: 100%;
+    padding: .6rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 1.1rem;
+   
+ }
+ .fieldCarro p{
+    width: 100%;
+    padding: .3rem;
+    display: flex;
+    justify-content: space-around;
+  align-items: center;
+ }
+
+ legend {
+    background-color: var(--color-negro);
+    color: var(--color-amarillo-oscuro);
+    padding: 3px 6px;
+    border-radius: 3px;
+    text-align: center;
+    font-size: 1.5rem;
+    font-weight: 700;
+  }
+  fieldset{
+    border: var(--color-amarillo-oscuro) 5px inset;
+    border-radius: 7px;
+  }
+
+  figcaption{
+    font-size: 1.3rem;
+    font-weight: 500;
+    border-radius: 1rem;
+    background-color: var(--color-amarillo-oscuro);
+    width: 50%;
+    text-align: center;
+    margin: 0 auto;
+    height: 1.4rem;
+  }

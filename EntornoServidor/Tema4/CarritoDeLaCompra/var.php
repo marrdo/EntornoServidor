@@ -23,18 +23,14 @@ $productos = array(
     )
 );
 
-
 $arrForm = array(
     'login' => array(
         '<form action="login.php" method="POST" enctype="multipart/form-data">',
-        '<label for="nombre">Nombre:</label>',
-        '<input type="text" id="nombre" name="userName"><br><br>',
-        '<label for="pass">Contraseña:</label>',
-        '<input type="password" id="pass" name="userPassword"><br><br>',
-        '<input type="submit" name="enviarDatos" value="Enviar">',
-        '</form>'
+        '<label for="nombre">Nombre:<input type="text" id="nombre" name="userName"></label>',
+        '<label for="pass">Contraseña:<input type="password" id="pass" name="userPassword"></label>',
+        '<input type="submit" name="enviarDatos" value="Entrar" class="btn">',
+        '</form>',
     ),
-
 );
 
 $arrValidUser = array(
@@ -47,3 +43,4 @@ $arrValidUser = array(
 );
 
 $carrito = array();
+$cantidades=array();

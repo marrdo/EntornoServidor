@@ -6,15 +6,6 @@ session_start();
 
 require_once('var.php');
 require_once('functions.php');
-//Debugger
-echo '<pre>';
-echo '<br>Session<br>';
-print_r($_SESSION);
-echo '</pre>';
-echo '<pre>';
-echo '<br>Post<br>';
-print_r($_POST);
-echo '</pre>';
 
 if ((isset($_SESSION['userName']))) {
     $userName = $_SESSION['userName'];
@@ -23,25 +14,30 @@ if ((isset($_SESSION['userName']))) {
 }
 
 if (isset($_POST['addProduct'])) {
-    if(isset($_POST['1']) && ($_POST['1'] != 0)){
-        $cantidad1 = $_POST['1'];
-        $carrito[]=llenarCarrito($productos,$cantidad1,$carrito);
 
-    }
-    
-    $cantidad2 = $_POST['2'];
-    $cantidad3 = $_POST['3'];
+    $_SESSION['cantidades'] = $_POST['cantidades'];
+    $cantidades = $_POST['cantidades'];
+    $carrito = llenarCarro($cantidades, $productos);
 
-    $_SESSION['1'] = $cantidad1;
-    $_SESSION['2'] = $cantidad2;
-    $_SESSION['3'] = $cantidad3;
-
+    $_SESSION['carrito'] = $carrito;
 }
-if(isset($_POST['verCarro'])){
+if (isset($_POST['verCarro'])) {
+    $_SESSION['redireccion'] = 'tienda';
     header('Location: carrito.php');
 }
 
+if (isset($_SESSION['carrito'])) {
+    $carrito = $_SESSION['carrito'];
+}
 
-$mostrarTienda = mostrarTienda($productos);
+if (((isset($_SESSION['redireccion'])) && ($_SESSION['redireccion'] == 'carrito'))
+    ||
+    (isset($_SESSION['carrito']))
+) {
+
+    $mostrarTienda = mostrarTienda($carrito);
+} else {
+    $mostrarTienda = mostrarTienda($productos);
+}
 
 require_once('template.php');
