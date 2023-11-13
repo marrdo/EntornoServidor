@@ -70,6 +70,7 @@ main{
     justify-content: center;
     flex-direction: column;
     gap: 2rem;
+    
 }
 .log{
     display: flex;
@@ -184,9 +185,12 @@ figcaption{
     width: 100%;
     margin: 1rem;
     padding: 1rem;
+    
 }
+
 .formCarro{
     width: 50%;
+    height: calc(100vh - 138px - 145px);
 }
 table {
     width: 50%;

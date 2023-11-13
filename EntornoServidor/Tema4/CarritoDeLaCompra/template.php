@@ -28,7 +28,7 @@
             </article>
         </section>
         <section class="tienda">
-            <article>
+            <article class="seleccionTienda">
                 <?php
                 if (isset($mostrarTienda) && !empty($mostrarTienda)) {
                     print $mostrarTienda;

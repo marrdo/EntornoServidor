@@ -52,9 +52,13 @@ $pokemonsUser = array_values($pokemonsUser);
 
 $pokemonsGanadores = fight($pokemonPc, $pokemonsUser);
 
+
+
+
+
 // echo '<pre>';
 // echo 'Pokemons ganadores<br>';
-// print_r($pokemonPc);
+// print_r($pokemonsGanadores);
 // echo 'Pokemons Usuario<br>';
 // print_r($pokemonsUser);
 // echo 'Pokemons PC<br>';

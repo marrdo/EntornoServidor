@@ -259,3 +259,6 @@ function seleccion_de_luchadores($pokemonsUser,$pokemonsPC)
 
     return $output;
 }
+
+//Porcesamos los datos de los pokemons que han ganado.
+
