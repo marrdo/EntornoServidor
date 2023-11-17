@@ -1274,7 +1274,6 @@ function fight($pokemonPc, $pokemonsUser)
 
     for ($i = 0; $i < 4; $i++) {
 
-
         //Datos PC
         $ataquePc = $pokemonPc[$i]['attack'];
         $vidaPc = $pokemonPc[$i]['hp'];
@@ -1334,14 +1333,14 @@ function fight($pokemonPc, $pokemonsUser)
         $vidaUserRestante = $vidaUser - $ataquePc;
         $vidaPercentUser = ($vidaUserRestante * 100) / $vidaUser;
 
-        // echo '<pre>';
-        // echo '<br>Funcion fight Comrpobamos VIDA<br>';
-        // echo 'Vida Pc: ' . $vidaPercentPc . '<br>';
-        // print_r($ataquePc);
-        // echo '<br>Vida Usuario: ' . $vidaPercentUser . '<br>';
-        // print_r($ataqueUser);
-        // echo '<br>';
-        // echo '</pre>';
+        echo '<pre>';
+        echo '<br>Funcion fight Comrpobamos VIDA<br>';
+        echo 'Vida Pc: ' . $vidaPc . '<br>';
+        echo 'Vida restante:'.$vidaPcRestante;
+        echo '<br>Vida Usuario: ' . $vidaUser  . '<br>';
+        echo 'Vida restante:'.$vidaUserRestante;
+        echo '<br>';
+        echo '</pre>';
 
         //Comprobar quien gana
         if ($vidaPercentUser > $vidaPercentPc) {
@@ -1399,10 +1398,10 @@ function fight($pokemonPc, $pokemonsUser)
             //Porcentaje de vida restante para el cumulo
             $vidaPercentTotalUsuario = $vidaPercentTotalUsuario + $vidaPercentUser;
             $vidaPercentTotalPc = $vidaPercentTotalPc + $vidaPercentPc;
-        } else {
-            // echo '<pre>';
-            // echo '<br>EMPATE<br>';
-            // echo '</pre>';
+        } else if($vidaPercentUser == $vidaPercentPc){
+            echo '<pre>';
+            echo '<br>EMPATE<br>';
+            echo '</pre>';
 
 
             //Metemos los dos debido al empate
@@ -1435,10 +1434,10 @@ function fight($pokemonPc, $pokemonsUser)
         }
     }
     //Debugger
-    echo '<pre>';
-    echo 'Funcion fight<br>';
-    echo 'Arrays de pokemons que ganan<br>';
-    print_r($pokemonsGandores);
-    echo '</pre>';
+    // echo '<pre>';
+    // echo 'Funcion fight<br>';
+    // echo 'Arrays de pokemons que ganan<br>';
+    // print_r($pokemonsGandores);
+    // echo '</pre>';
     return $pokemonsGandores;
 }
