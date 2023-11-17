@@ -21,7 +21,7 @@ if((isset($_POST['userName'])) && (isset($_POST['userPassword']))){
         header('Location: tienda.php');
         exit();
     }else{
-        $_SESSION['errorMessage'] = 'Las credenciales proporcionadas no son corretas.';
+        $_SESSION['errorMessage'] = 'Las credenciales proporcionadas no son correctas.';
         
         
     }
