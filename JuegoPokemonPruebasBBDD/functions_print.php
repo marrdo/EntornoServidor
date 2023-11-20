@@ -1,11 +1,14 @@
-<?php 
+<?php
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
-function mostrar($form = array()){
+function pintar($login = array())
+{
+
     $output = '';
-    foreach($form as $linea){
+
+    foreach ($login as $linea) {
         $output .= $linea;
     }
 
