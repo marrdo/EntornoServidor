@@ -9,35 +9,82 @@ require_once('db_config.php');
 
 /* LOGEO */
 if (isset($_POST['userName']) && isset($_POST['userPassword']) && isset($_SESSION['users'])) {
-    $userName = mysqli_real_escape_string($conn, $_POST['userName']);
+    // Obtener el nombre de usuario y la contraseña del formulario
+    $userName = $_POST['userName'];
     $userPassword = $_POST['userPassword'];
 
-    // Verificar las credenciales en la base de datos
-    $query = "SELECT * FROM Entrenadores WHERE Nombre = '$userName'";
-    $result = mysqli_query($conn, $query);
+    // Verificar las credenciales en la base de datos utilizando PDO
+    $extraerDatos = "SELECT * FROM Entrenadores WHERE Nombre = :userName";
+    /*PDOStatement -> stmt
+    Se refiere a una "sentencia preparada".
+     Una sentencia preparada es una característica de seguridad en las 
+     consultas de base de datos que permite ejecutar la misma consulta 
+     varias veces con parámetros diferentes.*/
+    $stmt = $conn->prepare($extraerDatos);
+
+    // Vincular el parámetro :userName con el valor $userName
+    $stmt->bindParam(':userName', $userName);
+
+    // Ejecutar la consulta
+    $stmt->execute();
+
+    // Obtener el resultado como un array asociativo
+    $result = $stmt->fetch(PDO::FETCH_ASSOC);
+
+    // Verificar la contraseña utilizando password_verify()
+    if ($result && password_verify($userPassword, $result['Password'])) {
+        // Las credenciales son válidas
+        $_SESSION['username'] = $userName;
+        header('Location: index.php');
+    } else {
+        // Las credenciales no son válidas
+        // Realizar acciones después del inicio de sesión fallido
+    }
+
+    /*
+    $query: Es la cadena de la consulta SQL, pero con un 
+    marcador de posición :userName.
+
+    $stmt: Se crea una sentencia preparada utilizando el método 
+    prepare de la conexión PDO ($conn). $stmt ahora es un objeto PDOStatement.
+
+    $stmt->bindParam(':userName', $userName): Vincula el valor de 
+    $userName al marcador de posición :userName en la sentencia preparada.
+     Esto es una forma de prevenir ataques de inyección SQL y es una 
+     buena práctica.
+
+    $stmt->execute(): Ejecuta la sentencia preparada con los 
+    parámetros vinculados.
+
+    $result = $stmt->fetch(PDO::FETCH_ASSOC): Obtiene una fila de 
+    resultados como un array asociativo. En este caso, se 
+    utiliza PDO::FETCH_ASSOC para obtener un array asociativo donde 
+    los nombres de las columnas son las claves del array.
+*/
 }
 
 /* REGISTRO (FUNCIONA)*/
 
 if (isset($_POST['registro'])) {
     if (isset($_POST['registerName']) && $_POST['registerPassword']) {
-        /*Para guardar las contraseñas en las BBD Usaremos las pass
-        directamente hasheadas, para esto utilizaremos crypt($pasword,$salt=opcional, si no lo ponemos se genera solo)
-        o password_hash($password,  PASSWORD_DEFAULT)*/
+        // Obtener el nombre de registro y la contraseña del formulario
         $nameRegister = $_POST['registerName'];
         $passwordRegister = $_POST['registerPassword'];
+
         // Hashear las contraseñas usando password_hash()
         $hashedName = password_hash($nameRegister, PASSWORD_DEFAULT);
         $hashedPassword = password_hash($passwordRegister, PASSWORD_DEFAULT);
-        $insertDatos = "INSERT INTO Entrenadores (Nombre, Password) VALUES ('$nameRegister', '$hashedPassword')";
-        // Debuger
-        // echo '<pre>';
-        // echo 'Passwird sin hash<br>';
-        // print_r($passwordRegister);
-        // echo 'PasswordHash<br>';
-        // print_r($hashedPassword);
-        // echo '</pre>';
-        $return = mysqli_query($conn, $insertDatos);
+
+        // Preparar la consulta de inserción utilizando sentencias preparadas
+        $insertDatos = "INSERT INTO Entrenadores (Nombre, Password) VALUES (:nameRegister, :hashedPassword)";
+        $stmt = $conn->prepare($insertDatos);
+
+        // Vincular los parámetros :nameRegister y :hashedPassword con los valores correspondientes
+        $stmt->bindParam(':nameRegister', $nameRegister);
+        $stmt->bindParam(':hashedPassword', $hashedPassword);
+
+        // Ejecutar la consulta de inserción
+        $return = $stmt->execute();
 
         // Si return es true, redirigimos a login.php
         if ($return) {
