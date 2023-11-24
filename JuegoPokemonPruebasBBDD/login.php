@@ -3,6 +3,8 @@ ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
+session_start();
+
 require_once('var.php');
 require_once('functions_print.php');
 require_once('db_config.php');
@@ -14,13 +16,13 @@ if (isset($_POST['userName']) && isset($_POST['userPassword']) && isset($_SESSIO
     $userPassword = $_POST['userPassword'];
 
     // Verificar las credenciales en la base de datos utilizando PDO
-    $extraerDatos = "SELECT * FROM Entrenadores WHERE Nombre = :userName";
+    $query = "SELECT * FROM Entrenadores WHERE Nombre = :userName";
     /*PDOStatement -> stmt
     Se refiere a una "sentencia preparada".
      Una sentencia preparada es una característica de seguridad en las 
      consultas de base de datos que permite ejecutar la misma consulta 
      varias veces con parámetros diferentes.*/
-    $stmt = $conn->prepare($extraerDatos);
+    $stmt = $conn->prepare($query);
 
     // Vincular el parámetro :userName con el valor $userName
     $stmt->bindParam(':userName', $userName);
@@ -29,7 +31,27 @@ if (isset($_POST['userName']) && isset($_POST['userPassword']) && isset($_SESSIO
     $stmt->execute();
 
     // Obtener el resultado como un array asociativo
+    //  :: se utiliza para acceder a elementos estáticos de una clase en PHP
+    // se utiliza en PHP para acceder a constantes y métodos estáticos de una 
+    // clase, así como a propiedades estáticas
     $result = $stmt->fetch(PDO::FETCH_ASSOC);
+// fetch se utiliza para obtener la siguiente fila de resultados.
+// Si esperas solo un resultado y no varios, puedes utilizar fetch sin un bucle.
+
+/*Si tu consulta puede devolver varias filas y deseas procesar cada una 
+de ellas, puedes usar un bucle while.
+
+Obtener todas las filas en un bucle
+while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
+    // Acceder a los valores de la fila
+    echo $result['id'];
+    echo $result['nombre'];
+    echo $result['email'];
+    
+    // Puedes hacer más cosas con los valores de la fila aquí
+}
+*/
+
 
     // Verificar la contraseña utilizando password_verify()
     if ($result && password_verify($userPassword, $result['Password'])) {
@@ -88,11 +110,15 @@ if (isset($_POST['registro'])) {
 
         // Si return es true, redirigimos a login.php
         if ($return) {
+            
             header('Location: login.php');
         } else {
             $error = '<h2>El usuario no se pudo registrar.</h2>';
         }
     }
+}
+if(isset($return)){
+    print_r($return);
 }
 
 $log = pintar($login);
