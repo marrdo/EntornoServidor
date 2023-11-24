@@ -57,3 +57,18 @@ function cargarDatos($results)
         return $output;
 }
 
+function mostraractualizacion($nombre)
+{
+    return $output = '
+    <div class="actualizado">
+    <h3>Se actualizó el cantante '.$nombre.'</h3>
+    </div>
+    ';
+}
+
+function mostrarBorrado($nombre)
+{
+    return '<div class="actualizado">
+    <h3>Se borró al cantante '.$nombre.'</h3>
+    </div>';
+}

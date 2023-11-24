@@ -14,6 +14,9 @@
             if(isset($mostrarCantantes)){
                 print($mostrarCantantes);
             }
+            if(isset($actualizado)){
+                print ($actualizado);
+            }
         ?>
     </main>
 </body>

@@ -26,3 +26,7 @@ document.querySelector('[name=listar]').addEventListener('click',()=>{
     ocultarSecciones();
     document.querySelector('.modificar').classList.remove('oculto');
 });
+
+document.addEventListener('click',()=>{
+    document.querySelector('.actualizado').classList.add('oculto');
+})
