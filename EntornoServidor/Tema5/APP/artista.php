@@ -5,60 +5,89 @@ error_reporting(E_ALL);
 session_start();
 
 require_once('db_config.php');
-require_once('var.php');
 require_once('functions.php');
 require_once('functions_print.php');
 //debugger
-echo '<pre>';
-echo '<br>';
-print_r($_POST);
-echo '</pre>';
+// echo '<pre>';
+// echo '<br>';
+// print_r($_POST);
+// echo '</pre>';
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    if(isset($_POST['actualizar'])){
-        //Encuentro la id del cantante por el valor de actualizar.
-        $idCantante = $_POST['actualizar'];
-        //Encuentro al cantante en el array $_POST y extraigo sus datos
-        $cantante = encontrarCantante($_POST,$idCantante);
-        //Actualizo mediante funcion los datos del cantante
-        $query = 'UPDATE cantantes SET nombre="'.$cantante[0].'", genero="'.$cantante[1].'", fecha_nacimiento="'.$cantante[2].'", precio_bolo="'.$cantante[3].'", localidad_nacimiento="'.$cantante[4].'" WHERE id="'.$idCantante.'"';
+    try {
+        // Desactivar autocommit
+        $dbh->autocommit(false);
+        // Iniciar la transacción
+        $dbh->begin_transaction();
+        if (isset($_POST['actualizar'])) {
+            // Obtener el ID del cantante a actualizar
+            $idCantante = $_POST['actualizar'];
+
+            // Encontrar los datos actuales del cantante en la base de datos
+            $cantante = encontrarCantante($dbh, $idCantante);
+            //Mostramos el formulario para que actulicen al cantante
+            $mostrarFormActualizar = mostrarFormActualizar($cantante);
+        } elseif (isset($_POST['formActualizar'])) {
+            // Obtener el ID del cantante a actualizar
+            $idCantante = $_POST['formActualizar'];
+            //Debugger    
+            // echo '<pre>';
+            // echo '<br>';
+            // print_r($_POST);
+            // echo '</pre>';
+            // Modificación: Utilizar consultas preparadas y vinculación de parámetros
+            $query = 'UPDATE cantantes SET nombre=?, genero=?, fecha_nacimiento=?, precio_bolo=?, localidad_nacimiento=? WHERE id=?';
+            $params = array("sssdsi", $_POST['nombre'], $_POST['genero'], $_POST['fecha_nacimiento'], $_POST['precio_bolo'], $_POST['localidad_nacimiento'], $idCantante);
+
+            // Actualizar los datos del cantante en la base de datos
+            $actualizado = actualizar($dbh, $query, $params);
+
+            // Mostrar un mensaje de actualización si fue exitoso
+            if ($actualizado) $actualizado = mostraractualizacion($_POST['nombre']);
+        } elseif (isset($_POST['borrar'])) {
+            // Obtener el ID del cantante a borrar
+            $idCantante = $_POST['borrar'];
+
+            // Encontrar los datos actuales del cantante en la base de datos
+            $cantante = encontrarCantante($dbh, $idCantante);
+
+            // Modificación: Utilizar consultas preparadas y vinculación de parámetros
+            $query = 'DELETE FROM cantantes WHERE id=?';
+            $borrado = borrarCantante($dbh, $query, $idCantante);
+
+            // Mostrar un mensaje de borrado si fue exitoso
+            if ($borrado) $borrado = mostrarBorrado($cantante['nombre']);
+        } elseif (isset($_POST['incorporar'])) {
+            // Obtener los datos del formulario POST
+            $nombre = $_POST['nombre'];
+            $genero = $_POST['genero'];
+            $fechNacimiento = $_POST['fechNacimiento'];
+            $precio_bolo = $_POST['precioBolo'];
+            $localidad = $_POST['localidad'];
+            echo '<pre>';
+            echo '<br>';
+            print_r($_POST);
+            echo '</pre>';
+            // Llamar a la función para incorporar un cantante a la base de datos
+            incorporarCantante($dbh, $nombre, $genero, $fechNacimiento, $precio_bolo, $localidad);
+
+            // Llamar a la función para mostrar un mensaje de incorporación exitosa
+            $incorporacion = mostrarIncorporacion($_POST['nombre']);
+        }
+    } catch (Exception $e) {
+        // Rollback de la transacción en caso de error
+        $dbh->rollback();
+        // Manejar la excepción
+        $mensajeExcepcion = $e->getMessage();
         
-        $actualizado = actualizar($query,$dbh);
-        //Comprobamos si se actualizó y si es asi lo mostramos por pantalla.
-        if($actualizado) $actualizado=mostraractualizacion($cantante[0]);
-
-    }
-    else if(isset($_POST['borrar'])){
-        //Encuentro la id del cantante por el valor de actualizar.
-        $idCantante = $_POST['borrar'];
-        //Encuentro al cantante en el array $_POST y extraigo sus datos
-        $cantante = encontrarCantante($_POST,$idCantante);
-        //Actualizo mediante funcion los datos del cantante
-        $query ='DELETE FROM cantantes WHERE id="'.$idCantante.'"';
-        $borrado = borrarCantante($query,$dbh);
-
-        if($borrado) $borrado = mostrarBorrado($cantante[0]);
-    }else if(isset($_POST['incorporar'])){
-        $nombre = $_POST['nombre'];
-        $genero = $_POST['genero'];
-        $fechNacimiento = $_POST['fechNacimiento'];
-        $precio_bolo = $_POST['precioBolo'];
-        $localidad = $_POST['localidad'];
-
-        $query = 'INSERT INTO cantantes (nombre,genero,fecha_nacimiento,precio_bolo,localidad_nacimiento) 
-        VALUES ('.$nombre.','.$genero.','.$fechNacimiento.','.$precio_bolo.','.$localidad.')';
-
-        
-
+    } finally {
+        // Reactivar autocommit al final, ya sea que la transacción haya tenido éxito o no
+        $dbh->autocommit(true);
     }
 }
 
 /*Esta query con el result esta aqui debajo para que cuando recargue 
 lo ultimo que vuelva a leer sea la tabla actualizada*/
-$query = 'SELECT * FROM cantantes';
 
-$results = $dbh->query($query);
-
-$mostrarCantantes = cargarDatos($results);
+$mostrarCantantes = cargarDatos($dbh);
 
 require_once('template.php');
-?>

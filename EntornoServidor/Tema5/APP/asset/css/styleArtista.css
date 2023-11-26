@@ -1,3 +1,8 @@
 .oculto{
     display: none;
 }
+
+.botonesForm{
+    display: flex;
+    gap: 1rem;
+}

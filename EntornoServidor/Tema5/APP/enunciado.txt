@@ -1,0 +1,22 @@
+En esta aplicación vamos a poner en práctica lo aprendido en el tema para creación, 
+conexión y consultas a bases de datos MySql desde PHP. 
+Para ello vamos a crear el embrión de una aplicación que podría servir 
+para la gestión de un festival de viejas estrellas del flamenco. Se trata 
+del festival "Joyitas de nuestra Andalucía".
+
+    -Crea la base de datos 'joyitas_andalucia'. La base de datos cuenta con 
+    dos tablas, una de artistas y otra de conciertos, con los campos vistos en clase.
+
+    -Crea una página de artistas, (artistas.php): Consiste en un listado de todos los 
+    artistas de la aplicación, con funcionalidad de creación, 
+    actualización y borrado de artistas.
+
+    -Crea una página de conciertos, (conciertos.php): Consiste en un listado de todos 
+    los conciertos de nuestro festival de la aplicación, con funcionalidad de creación, 
+    actualización y borrado de conciertos.
+
+    -Ten presente que si se borra un artista, se deben borrar los conciertos vinculados, 
+    y para ello será necesario utilizar transacciones.
+
+    -Una vez hecho eso, crea una página admin.php para importar la base de datos, 
+    suponinedo que ha sido previamente exportada con phpMyAdmin
