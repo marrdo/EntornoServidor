@@ -1,0 +1,2 @@
+ Almacena tus archivos de vista. Puedes 
+ organizarlos por controlador para facilitar la administración

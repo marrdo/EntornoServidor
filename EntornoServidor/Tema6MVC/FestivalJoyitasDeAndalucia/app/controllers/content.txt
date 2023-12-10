@@ -1,0 +1,3 @@
+ Aquí es donde deben residir tus controladores. 
+ Cada controlador maneja las interacciones 
+ entre el modelo y la vista

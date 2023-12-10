@@ -1,0 +1,184 @@
+@import url(https://fonts.googleapis.com/css?family=Lato:100,100italic,300,300italic,regular,italic,700,700italic,900,900italic);
+
+:root {
+  /*Dark Default */
+
+  --font-family-letter: "Lato",Arial, Helvetica, sans-serif;
+  --normal-font: 400;
+  --bold-font: 700;
+  --bolder-font: 900;
+  --bg-color: #111927;
+  --bg2-color: #394559;
+  --bg-degradado: #242e3f;
+  --resalte-color: #9fef00;
+  --fondo-resalte-color: #27382d;
+  --title-enlace-color: #f5f4f3;
+  --letter-color: #b2b8c9;
+  --color-linea: #9b2738;
+  --color-github: #f5f4f3;
+  --bg-color-nav: #111927;
+  --font-size-h1: 4rem;
+  --font-size-h2: 2.5rem;
+  --font-size-h3: 1.8rem;
+}
+*,
+::before,
+::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+body {
+  background-color: var(--bg-color);
+  color: var(--letter-color);
+  font-family: "Lato", Arial, Helvetica, sans-serif;
+}
+ul {
+  list-style-type: none;
+}
+
+a {
+  text-decoration: none;
+  color: var(--title-enlace-color);
+}
+a:hover{
+  color: var(--resalte-color);
+}
+button{
+    background-color: var(--fondo-resalte-color);
+    border-radius: 7px;
+    border: outset var(--bg-degradado) solid;
+    padding: .5rem;
+    font-family: var(--font-family-letter);
+    transition: all 0.5s ease-in-out;
+  transform: scale(0.8);
+  color: var(--resalte-color);
+  font-size: 1rem;
+}
+button:hover{
+    background-color: var(--resalte-color);
+    transform: scale(1);
+    cursor: pointer;
+    color: var(--fondo-resalte-color);
+    box-shadow: 2px 2px 10px var(--resalte-color);
+}
+html {
+  scroll-behavior: smooth;
+}
+
+.general {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: fixed;
+  background-color: transparent;
+  width: 100%;
+  z-index: 100;
+  padding: 1.5rem;
+  padding-right: 4.8rem;
+}
+.logo img {
+    width: 11rem;
+  }
+.logo:hover{
+    cursor: pointer;
+}
+
+  nav {
+    /* z-index: 1; */
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.5rem 3.5rem;
+    background-color: var(--bg-color-nav);
+    box-shadow: 4px 4px 10px var(--resalte-color);
+    border-radius: 2rem;
+    width: max-content;
+  }
+  
+  nav a {
+    color: var(--title-enlace-color);
+    transition: all 0.4s ease-in;
+  }
+  nav a:hover {
+    color: var(--resalte-color);
+    border-bottom: 2px solid var(--fondo-resalte-color);
+  }
+  
+  nav ul {
+    display: flex;
+    gap: 2rem;
+  }
+  
+  nav ul li {
+    font-weight: var(--bold-font);
+  }
+
+  main{
+    padding-top: 8rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+table {
+  border-collapse: collapse; /* Combina los bordes de las celdas adyacentes en una sola línea */
+  width: 80%;
+}
+
+th,
+td {
+  border: 2px solid var(--title-enlace-color); /* Establece un borde de 1 píxel sólido y color gris claro a todas las celdas */
+  padding: 8px; /* Añade un espacio interno de 8 píxeles a todas las celdas */
+  text-align: left;
+  background-color: var(--bg2-color);
+  color: #b2b8c9;
+}
+td:hover{
+    color: var(--title-enlace-color);
+    background-color: var(--bg-degradado);
+}
+
+th {
+  color: var(--resalte-color);
+  background-color: var(
+    --fondo-resalte-color
+  ); /* Establece un color de fondo gris claro para las celdas del encabezado */
+}
+        /* Create tpl */
+
+#formCreate{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 80%;
+    gap: 2rem;
+    margin: .5rem;
+    padding: 1rem;
+}
+
+#formCreate fieldset{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 2rem;
+    margin: .5rem;
+    padding: 1rem;
+}
+#formCreate legend{
+    color: var(--resalte-color);
+    font-weight: 500;
+}
+input{
+    border:1px solid  var(--fondo-resalte-color);
+    border-radius: 1rem;
+    padding: .3rem;
+}
+input:focus{
+    border:2px solid  var(--resalte-color);
+    border-radius: .7rem;
+    padding: .2rem;
+    outline: none;
+    box-shadow: 3px 2px var(--resalte-color);
+}

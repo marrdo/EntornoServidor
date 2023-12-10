@@ -1,0 +1,2 @@
+Puedes almacenar archivos comunes y utilidades aquí, como hojas de estilo (CSS), 
+scripts (JavaScript) o imágenes compartidas entre diferentes partes de tu aplicación.

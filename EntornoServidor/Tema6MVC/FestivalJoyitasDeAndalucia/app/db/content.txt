@@ -1,0 +1,4 @@
+ Puedes colocar archivos relacionados 
+ con la base de datos en esta 
+ carpeta, como configuraciones de 
+ conexión o scripts SQL para crear tablas.
