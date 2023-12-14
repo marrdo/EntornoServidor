@@ -67,10 +67,7 @@ class ArtistasController
     public function eliminar()
     {
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-            echo '<pre>';
-            echo '<br>';
-            print_r($_POST);
-            echo '</pre>';
+
 
             $this->modelo->borrarArtista($_POST['eliminarCantante']);
 

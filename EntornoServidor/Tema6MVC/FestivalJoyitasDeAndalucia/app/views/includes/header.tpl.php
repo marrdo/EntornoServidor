@@ -15,6 +15,7 @@
                 <li><a href=".?path=artistas/listar">Ver artistas</a></li>
                 <li><a href=".?path=artistas/crear">Crear artista</a></li>
                 <li><a href=".?path=conciertos/listar">Ver conciertos</a></li>
+                <li><a href=".?path=conciertos/crear">Crear concierto</a></li>
             </ul>
         </nav>
     </header>
