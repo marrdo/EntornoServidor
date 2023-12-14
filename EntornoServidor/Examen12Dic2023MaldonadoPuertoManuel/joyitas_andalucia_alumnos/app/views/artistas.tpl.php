@@ -2,8 +2,13 @@
 include('../app/views/includes/header.tpl.php');
 ?>
 <ul>
-    <?php foreach($lista_artistas as $artista): ?>
-        <li><a href=".?path=artistas/ver/<?php echo $artista['id']; ?>"><?php echo $artista['nombre']; ?></a></li><button type="button"><a href=".?path=artistas/eliminar/<?php echo $artista['id']; ?>">💀</a></button>
+    <?php foreach ($lista_artistas as $artista) : ?>
+        <li><?php echo $artista['nombre']; ?>
+            <a href=".?path=artistas/eliminar/<?php echo $artista['id']; ?>">
+                <button type="button">💀</button>
+            </a>
+            
+        </li>
     <?php endforeach; ?>
 
 </ul>

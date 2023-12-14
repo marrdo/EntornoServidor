@@ -5,7 +5,7 @@ error_reporting(E_ALL);
 
 
 
-class ConciertosModel
+class conciertosModel
 {
     private $dbh;
 
@@ -16,21 +16,21 @@ class ConciertosModel
     }
 
 
-    public function getListConciertos($idsConciertos = [])
+    public function getListconciertos($idsconciertos = [])
     {
         try {
-            if (!empty($idsConciertos)) {
+            if (!empty($idsconciertos)) {
 
                 // Creamos una cadena de caracteres con el mismo número de ? que tiene el array de parámetros
                 // Para crearlo usamos implode
-                $arrConciertos = implode(',', array_fill(0, count($idsConciertos), '?'));
+                $arrconciertos = implode(',', array_fill(0, count($idsconciertos), '?'));
 
-                // Corregir la consulta para incluir paréntesis alrededor de $arrConciertos
-                $query = "SELECT * FROM conciertos WHERE id_concierto IN ($arrConciertos)";
+                // Corregir la consulta para incluir paréntesis alrededor de $arrconciertos
+                $query = "SELECT * FROM conciertos WHERE id_concierto IN ($arrconciertos)";
                 $stmt = $this->dbh->prepare($query);
 
                 // Asignar los valores de las IDs
-                foreach ($idsConciertos as $key => $id) {
+                foreach ($idsconciertos as $key => $id) {
                     $stmt->bindValue($key + 1, $id);
                 }
             } else {
@@ -45,9 +45,9 @@ class ConciertosModel
 
             $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-            if (!empty($idsConciertos) && empty($results)) {
+            if (!empty($idsconciertos) && empty($results)) {
                 // Si se proporcionaron IDs de artistas pero no se encontró ningún resultado, mostrar un mensaje de error
-                $errorIds = implode(', ', $idsConciertos);
+                $errorIds = implode(', ', $idsconciertos);
                 echo "No existen cantantes con las IDs: $errorIds";
             }
 
@@ -68,9 +68,9 @@ class ConciertosModel
         try {
             $this->dbh->beginTransaction();
             //Eliminar conciertos del artista
-            $queryConciertos = 'DELETE FROM conciertos where id_concierto = :id';
+            $queryconciertos = 'DELETE FROM conciertos where id_concierto = :id';
 
-            $stmt = $this->dbh->prepare($queryConciertos);
+            $stmt = $this->dbh->prepare($queryconciertos);
             $stmt->bindParam(':id', $idConcierto, PDO::PARAM_INT);
 
             if (!$stmt->execute()) {
@@ -83,6 +83,78 @@ class ConciertosModel
         }
     }
 
+    public function guardarConcierto($nombreArtista, $fecha, $lugar, $aforo, $precioEntrada, $hora)
+    {
+        try {
+            // Consulta para obtener el ID del artista en base al nombre
+            $queryObtenerIdArtista = 'SELECT id FROM cantantes WHERE nombre = :nombreArtista';
+            $stmtObtenerIdArtista = $this->dbh->prepare($queryObtenerIdArtista);
+            $stmtObtenerIdArtista->bindParam(':nombreArtista', $nombreArtista);
+            
+            if (!$stmtObtenerIdArtista->execute()) {
+                throw new PDOException("Error executing query: " . implode(" ", $stmtObtenerIdArtista->errorInfo()));
+            }
+    
+            $idArtista = $stmtObtenerIdArtista->fetchColumn();
+    
+            // Consulta para insertar el concierto con el ID del artista obtenido
+            $queryInsertarConcierto = 'INSERT INTO conciertos (id, artista, fecha, lugar, aforo, precio_entradas, hora) 
+            VALUES (null, :idArtista, :fecha, :lugar, :aforo, :precio_entradas, :hora)';
+            
+            $stmtInsertarConcierto = $this->dbh->prepare($queryInsertarConcierto);
+            $stmtInsertarConcierto->bindParam(':idArtista', $idArtista);
+            $stmtInsertarConcierto->bindParam(':fecha', $fecha);
+            $stmtInsertarConcierto->bindParam(':lugar', $lugar);
+            $stmtInsertarConcierto->bindParam(':aforo', $aforo);
+            $stmtInsertarConcierto->bindParam(':precio_entradas', $precioEntrada);
+            $stmtInsertarConcierto->bindParam(':hora', $hora);
+    
+            if (!$stmtInsertarConcierto->execute()) {
+                throw new PDOException("Error executing query: " . implode(" ", $stmtInsertarConcierto->errorInfo()));
+            }
+    
+            // Redireccionamos al usuario a la lista de conciertos después de guardar
+            header('Location: index.php?path=conciertos/listar');
+            exit();
+        } catch (PDOException $e) {
+            // Manejo específico para excepciones relacionadas con la base de datos
+            echo "Error en la base de datos: " . $e->getMessage();
+        } catch (Exception $e) {
+            // Otros manejos de excepciones generales
+            echo "Error general: " . $e->getMessage();
+        }
+    }
+
+    public function capturarDatos($idConcierto)
+    {
+        try {
+    
+            $query = 'SELECT * FROM conciertos WHERE id = :id';
+            $stmt = $this->dbh->prepare($query);
+            $stmt->bindParam(':id', $idConcierto[0], PDO::PARAM_INT);
+    
+            if ($stmt->execute()) {
+                // Verifica si hay resultados antes de intentar obtenerlos
+                if ($stmt->rowCount() > 0) {
+                    $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    
+                    return $results;
+                } else {
+                    echo 'No se encontraron resultados para el ID: ' . $idConcierto;
+                }
+            } else {
+                throw new PDOException("Error  query: " . implode(" ", $stmt->errorInfo()));
+            }
+        } catch (PDOException $e) {
+            // Manejo específico para excepciones relacionadas con la base de datos
+            echo "Error en la base de datos: " . $e->getMessage();
+            return false; 
+        } catch (Exception $e) {
+            
+            echo "Error general: " . $e->getMessage();
+            return false;
+        }
+    }
    
 }
 

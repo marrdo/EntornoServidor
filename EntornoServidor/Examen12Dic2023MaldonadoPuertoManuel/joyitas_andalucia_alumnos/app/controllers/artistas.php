@@ -32,7 +32,7 @@ class ArtistasController{
     {
         $idArtista = $params;
 
-            $this->modelo->borrarArtista($idArtista);
+            $this->modelo->borrarArtista($idArtista[0]);
 
             // Redireccionamos al usuario a la lista de artistas después de guardar
             header('Location: index.php?path=artistas/listar');
@@ -67,8 +67,10 @@ class ArtistasController{
                     exit();
                 } catch (Exception $e) {
     
-                    echo 'Error: ' . $e->getMessage();
+                    echo 'Error al guardar: ' . $e->getMessage();
                 }
             }
         }
+
+
 }
