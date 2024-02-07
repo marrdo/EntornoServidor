@@ -13,7 +13,8 @@ class MonumentoController extends Controller
      */
     public function index()
     {
-        //
+        $monumentos = Monumento::all();
+        return view('monumento.index',compact('monumentos'));
     }
 
     /**
