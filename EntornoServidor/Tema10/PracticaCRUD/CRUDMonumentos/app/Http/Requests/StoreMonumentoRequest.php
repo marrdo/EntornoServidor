@@ -11,7 +11,7 @@ class StoreMonumentoRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,9 @@ class StoreMonumentoRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'nombre'=>'required|min:5|max:100|string',
+            'aforo'=>'required|min:1|integer',
+            'provincia'=>'required|integer|exists:provincias,id'
         ];
     }
 }

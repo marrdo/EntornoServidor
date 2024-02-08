@@ -13,7 +13,8 @@ class ProvinciaController extends Controller
      */
     public function index()
     {
-        //
+        $provincias = Provincia::all();
+        return view('provincia.index',compact('provincias'));
     }
 
     /**

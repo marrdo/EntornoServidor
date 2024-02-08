@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreMonumentoRequest;
 use App\Http\Requests\UpdateMonumentoRequest;
 use App\Models\Monumento;
+use App\Models\Provincia;
 
 class MonumentoController extends Controller
 {
@@ -22,7 +23,8 @@ class MonumentoController extends Controller
      */
     public function create()
     {
-        //
+        $provincias = Provincia::all();
+        return view('monumento.create', compact('provincias'));
     }
 
     /**
@@ -30,7 +32,8 @@ class MonumentoController extends Controller
      */
     public function store(StoreMonumentoRequest $request)
     {
-        //
+        Monumento::create($request->all()); 
+        return redirect()->route('monumento.index')->with('success', 'Monumento registrado');
     }
 
     /**

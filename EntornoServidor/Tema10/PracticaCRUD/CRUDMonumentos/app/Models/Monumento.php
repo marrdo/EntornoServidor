@@ -9,4 +9,8 @@ class Monumento extends Model
 {
     use HasFactory;
     protected $guarded = [];
+
+    public function provincia(){
+        return $this->belongsTo(Provincia::class);
+    }
 }

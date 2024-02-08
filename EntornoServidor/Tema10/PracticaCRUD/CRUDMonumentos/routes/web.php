@@ -40,6 +40,6 @@ Route::resource('/provincia', ProvinciaController::class);
 
 Route::get('/monumento', [MonumentoController::class,'index'])->name('monumento.index');
 
-Route::middleware('auth')->group(function(){
+Route::middleware(['auth','verified'])->group(function(){
     Route::resource('/monumento', MonumentoController::class)->only(['create','store']);
 });
