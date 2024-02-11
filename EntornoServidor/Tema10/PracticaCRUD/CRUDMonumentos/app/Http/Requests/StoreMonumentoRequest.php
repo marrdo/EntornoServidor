@@ -22,9 +22,27 @@ class StoreMonumentoRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'nombre'=>'required|min:5|max:100|string',
-            'aforo'=>'required|min:1|integer',
-            'provincia'=>'required|integer|exists:provincias,id'
+            'nombre' => 'required|string|min:1|max:100',
+            'aforo' => 'required|numeric',
+            'provincia' => 'required|numeric',
+        ];
+    }
+
+    /**
+     * Get custom error messages for validator errors.
+     *
+     * @return array<string, string>
+     */
+    public function messages(): array
+    {
+        return [
+            'nombre.required' => 'El campo nombre es obligatorio.',
+            'nombre.max' => 'El nombre supera el limite de caracteres',
+            'aforo.required' => 'El campo aforo es obligatorio, revíselo.',
+            'aforo.numeric' => 'El campo aforo debe ser un valor numérico.',
+            'provincia.required' => 'El campo provincia es obligatorio.',
+            'provincia.numeric' => 'El campo provincia debe ser un valor numérico.',
         ];
     }
 }
+
