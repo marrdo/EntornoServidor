@@ -1,0 +1,68 @@
+ tres modelos: User, Role, y Permission.
+
+    User: Representa los usuarios de tu aplicación.
+    Role: Representa los roles que un usuario puede tener en la aplicación.
+    Permission: Representa los permisos que están asociados a un rol.
+
+En este escenario, un usuario puede tener varios roles, y un rol puede tener varias permisos.
+
+La estructura de la base de datos podría ser algo como:
+
+    users:
+        id
+        name
+
+    roles:
+        id
+        name
+
+    permissions:
+        id
+        name
+
+    role_user (tabla pivot para la relación muchos a muchos entre usuarios y roles):
+        user_id
+        role_id
+
+    permission_role (tabla pivot para la relación muchos a muchos entre roles y permisos):
+        role_id
+        permission_id
+
+En este caso, si deseas obtener todos los permisos asociados a un usuario, puedes definir la relación hasManyThrough en el modelo User de la siguiente manera:
+
+php
+
+namespace App;
+
+use Illuminate\Database\Eloquent\Model;
+
+class User extends Model
+{
+    public function permissions()
+    {
+        return $this->hasManyThrough(
+            'App\Permission',
+            'App\Role',
+            'user_id', // Foreign key en la tabla intermedia
+            'role_id', // Foreign key en la tabla de destino
+            'id',      // Clave local
+            'id'       // Clave en la tabla intermedia
+        );
+    }
+}
+
+Con esto, Laravel sabrá cómo obtener todos los permisos asociados a un usuario a través de sus roles.
+
+Entonces, cuando llamas a $user->permissions, Laravel ejecutará una consulta que primero selecciona los 
+roles asociados al usuario en la tabla pivot role_user, luego selecciona los permisos asociados a esos 
+roles en la tabla pivot permission_role, y finalmente carga los modelos Permission correspondientes.
+
+    'App\Permission': Esto es el nombre completo del modelo Permission. Laravel utilizará este modelo para cargar los permisos asociados al usuario.
+    'App\Role': Esto es el nombre completo del modelo Role. Laravel utilizará este modelo como el modelo intermedio a través del cual se obtienen los permisos.
+    'user_id': Esto es el nombre de la clave externa en la tabla intermedia role_user que hace referencia a la tabla users.
+    'role_id': Esto es el nombre de la clave externa en la tabla intermedia role_user que hace referencia a la tabla roles.
+    'id': Esto es el nombre de la clave primaria en la tabla users.
+    'id': Esto es el nombre de la clave primaria en la tabla intermedia role_user.
+
+Entonces, en resumen, hasManyThrough se utiliza en Laravel cuando tienes una relación de muchos a muchos indirecta entre dos modelos, y necesitas 
+atravesar un tercer modelo intermedio para obtener los resultados deseados.

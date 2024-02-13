@@ -1,0 +1,118 @@
+Ejemplo de hasManyThrough
+
+Supongamos que tienes tres modelos: Country, State, y City.
+
+    Country: Representa un país.
+    State: Representa un estado o provincia dentro de un país.
+    City: Representa una ciudad dentro de un estado.
+
+La relación entre estos modelos es que un país puede tener varios estados, y cada estado puede tener varias ciudades.
+
+php
+
+namespace App;
+
+use Illuminate\Database\Eloquent\Model;
+
+class Country extends Model
+{
+    public function cities()
+    {
+        return $this->hasManyThrough(
+            'App\City',    // Modelo final al que se accede
+            'App\State',   // Modelo intermedio
+            'country_id',  // Clave externa en la tabla intermedia
+            'state_id',    // Clave externa en la tabla de destino
+            'id',          // Clave primaria en la tabla actual
+            'id'           // Clave primaria en la tabla intermedia
+        );
+    }
+}
+
+Con este ejemplo, puedes acceder a las ciudades de un país usando $country->cities.
+
+ estructurar las migraciones para los modelos Country, State, y City en Laravel, siguiendo el ejemplo proporcionado:
+Migration para countries
+
+php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+class CreateCountriesTable extends Migration
+{
+    public function up()
+    {
+        Schema::create('countries', function (Blueprint $table) {
+            $table->id();
+            $table->string('name');
+            // Otros campos relevantes para el país
+            $table->timestamps();
+        });
+    }
+
+    public function down()
+    {
+        Schema::dropIfExists('countries');
+    }
+}
+
+Migration para states
+
+php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+class CreateStatesTable extends Migration
+{
+    public function up()
+    {
+        Schema::create('states', function (Blueprint $table) {
+            $table->id();
+            $table->foreignId('country_id')->constrained()->onDelete('cascade');
+            $table->string('name');
+            // Otros campos relevantes para el estado
+            $table->timestamps();
+        });
+    }
+
+    public function down()
+    {
+        Schema::dropIfExists('states');
+    }
+}
+
+Migration para cities
+
+php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+class CreateCitiesTable extends Migration
+{
+    public function up()
+    {
+        Schema::create('cities', function (Blueprint $table) {
+            $table->id();
+            $table->foreignId('state_id')->constrained()->onDelete('cascade');
+            $table->string('name');
+            // Otros campos relevantes para la ciudad
+            $table->timestamps();
+        });
+    }
+
+    public function down()
+    {
+        Schema::dropIfExists('cities');
+    }
+}
+
+Con estas migraciones, se crean tres tablas en la base de datos: countries, states, y cities. 
+La tabla states tiene una clave externa country_id que hace referencia a la tabla countries, 
+y la tabla cities tiene una clave externa state_id que hace referencia a la tabla states. 
+Esto establece la relación de un país a través de sus estados y las ciudades dentro de esos estados.

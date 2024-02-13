@@ -1,0 +1,115 @@
+Ejemplo de hasOneThrough
+
+Supongamos que tienes tres modelos: User, Profile, y Address.
+
+    User: Representa un usuario en tu aplicación.
+    Profile: Representa el perfil asociado a un usuario.
+    Address: Representa la dirección asociada a un perfil.
+
+La relación entre estos modelos es que un usuario tiene un perfil y cada perfil tiene una dirección.
+
+php
+
+namespace App;
+
+use Illuminate\Database\Eloquent\Model;
+
+class User extends Model
+{
+    public function address()
+    {
+        return $this->hasOneThrough(
+            'App\Address',     // Modelo final al que se accede
+            'App\Profile',     // Modelo intermedio
+            'user_id',         // Clave externa en la tabla intermedia
+            'profile_id',      // Clave externa en la tabla de destino
+            'id',              // Clave primaria en la tabla actual
+            'id'               // Clave primaria en la tabla intermedia
+        );
+    }
+}
+
+Con este ejemplo, puedes acceder a la dirección de un usuario usando $user->address.
+
+ para los modelos User, Profile, y Address en Laravel, siguiendo el ejemplo proporcionado:
+Migration para users
+
+php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+class CreateUsersTable extends Migration
+{
+    public function up()
+    {
+        Schema::create('users', function (Blueprint $table) {
+            $table->id();
+            // Otros campos relevantes para el usuario
+            $table->timestamps();
+        });
+    }
+
+    public function down()
+    {
+        Schema::dropIfExists('users');
+    }
+}
+
+Migration para profiles
+
+php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+class CreateProfilesTable extends Migration
+{
+    public function up()
+    {
+        Schema::create('profiles', function (Blueprint $table) {
+            $table->id();
+            $table->foreignId('user_id')->unique()->constrained()->onDelete('cascade');
+            // Otros campos relevantes para el perfil
+            $table->timestamps();
+        });
+    }
+
+    public function down()
+    {
+        Schema::dropIfExists('profiles');
+    }
+}
+
+Migration para addresses
+
+php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+class CreateAddressesTable extends Migration
+{
+    public function up()
+    {
+        Schema::create('addresses', function (Blueprint $table) {
+            $table->id();
+            $table->foreignId('profile_id')->unique()->constrained()->onDelete('cascade');
+            // Otros campos relevantes para la dirección
+            $table->timestamps();
+        });
+    }
+
+    public function down()
+    {
+        Schema::dropIfExists('addresses');
+    }
+}
+
+Con estas migraciones, se crean tres tablas en la base de datos: users, profiles, y addresses. 
+La tabla profiles tiene una clave externa user_id que hace referencia a la tabla users, y 
+la tabla addresses tiene una clave externa profile_id que hace referencia a la tabla profiles. 
+Esto establece la relación de que un usuario tiene un perfil y cada perfil tiene una dirección.
