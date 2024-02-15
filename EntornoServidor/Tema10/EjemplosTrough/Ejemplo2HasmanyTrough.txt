@@ -8,7 +8,6 @@ Supongamos que tienes tres modelos: Country, State, y City.
 
 La relación entre estos modelos es que un país puede tener varios estados, y cada estado puede tener varias ciudades.
 
-php
 
 namespace App;
 
@@ -34,7 +33,7 @@ Con este ejemplo, puedes acceder a las ciudades de un país usando $country->cit
  estructurar las migraciones para los modelos Country, State, y City en Laravel, siguiendo el ejemplo proporcionado:
 Migration para countries
 
-php
+
 
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
