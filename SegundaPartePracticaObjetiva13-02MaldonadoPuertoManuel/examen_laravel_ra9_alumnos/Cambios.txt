@@ -1,0 +1,3 @@
+Monumento(1) -> (1)Responsable (1) -> (1)phone
+
+Se han quitado los foreach pro los que salian repetidos en el index los monuemtnos repetidos 3 veces.
