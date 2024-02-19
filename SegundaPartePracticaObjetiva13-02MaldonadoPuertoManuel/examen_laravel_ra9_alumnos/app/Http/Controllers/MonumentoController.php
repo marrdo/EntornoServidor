@@ -12,8 +12,8 @@ class MonumentoController extends Controller
 {
 
     public function crud(){
-
-      return view('crud');
+      $monumentos = Monumento::all();
+      return view('crud',compact('monumentos'));
     }
 
 

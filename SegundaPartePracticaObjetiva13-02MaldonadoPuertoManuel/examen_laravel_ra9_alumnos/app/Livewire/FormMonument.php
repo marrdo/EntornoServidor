@@ -7,22 +7,17 @@ use Livewire\Component;
 class FormMonument extends Component
 {
 
-    public $counter;
+    public int $monumento;
 
  
 
-    public function mount($counter)
+    public function mount(int $counter = 0)
     {
         
-        $this->counter=$counter;
+        
 
     }
-    public function incrementar(){
-        $this->counter++;
-    }
-    public function decrementar(){
-        $this->counter--;
-    }
+
     public function render()
     {
         return view('livewire.form-monument');

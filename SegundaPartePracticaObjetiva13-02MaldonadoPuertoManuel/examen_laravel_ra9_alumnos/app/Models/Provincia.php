@@ -16,7 +16,7 @@ class Provincia extends Model
       'updated_at'
   ];
 
-    public function monumentos(): HasMany{
+    public function monumento(): HasMany{
       return $this->hasMany(Monumento::class);
     }
 }

@@ -25,7 +25,7 @@ class Monumento extends Model
   ];
   
 
-    public function provincia(){
+    public function provincias(){
       return $this->belongsTo(Provincia::class, 'provincia');
     }
 

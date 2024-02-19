@@ -4,9 +4,11 @@
             {{ __('Insert new monument') }}
         </h2>
     </x-slot>
-
-    <livewire:form-monument :counter="$counter"">
+    <livewire:form-monument >
         
     </livewire:form-monument>
+
+    <livewire:table-monument :monumentos="$monumentos">
+    </livewire:table-monument>
 
 </x-app-layout>
