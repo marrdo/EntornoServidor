@@ -5,7 +5,7 @@
         </h2>
     </x-slot>
 
-    <livewire:form-monument>
+    <livewire:form-monument :counter="$counter"">
         
     </livewire:form-monument>
 
