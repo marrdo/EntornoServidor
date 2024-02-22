@@ -16,8 +16,8 @@ class DatabaseSeeder extends Seeder
     {
       $this->call([
         ProvinciaSeeder::class,
-        // PhoneSeeder::class,
-        // UserSeeder::class
+        PhoneSeeder::class,
+        UserSeeder::class
     ]);
 
     }

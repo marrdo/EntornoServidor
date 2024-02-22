@@ -15,13 +15,16 @@ class PhoneSeeder extends Seeder
     public function run(): void
     {
         Phone::create([
-            'numero' => '689540832',
+            'numero' => '689111111',
+            'user_id'=> '1'
         ]);
         Phone::create([
-            'numero' => '689540832',
+            'numero' => '689222222',
+            'user_id'=> '2'
         ]);
         Phone::create([
-            'numero' => '689540832',
+            'numero' => '689333333',
+            'user_id'=> '3'
 
         ]);
     }

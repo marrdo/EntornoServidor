@@ -11,14 +11,20 @@
         @forelse($monumentos as $monumento)
         {{-- @dd($monumento) --}}
         {{-- @dd($monumento->phone->numero); --}}
-        <div class="py-12">
+        <div class="py-2">
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
                 <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
-                    <div class="p-6 text-gray-900 dark:text-gray-100">
+                    <div class="p-2 text-gray-900 dark:text-gray-100">
                         {{-- <pre>{{ json_encode($monumentos,JSON_UNESCAPED_UNICODE|JSON_PRETTY_PRINT) }}</pre> --}}
                         <div>
-                            <li>{{$monumento->nombre}} -- Tlfn contacto: {{$monumento->phone->numero}} || Nombre empleado: {{$monumento->user->name}}</li>
-                        </div>
+                            <li>{{$monumento->nombre}}<br/>Aforo: {{$monumento->aforo}} <br/>Ciudad: {{$monumento->provincias->nombre}} <br/>Nombre empleado: <strong>{{$monumento->user->name}}</strong> -> Tlfn contacto:
+                                @isset($monumento->phone)
+                                @isset($monumento->phone->numero)
+                                    {{$monumento->phone->numero}}
+                                @endisset
+                            @endisset
+                            </li>
+                         </div> 
                     </div>
                 </div>
             </div>

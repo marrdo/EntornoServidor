@@ -7,13 +7,16 @@ use App\Models\Monumento;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use App\Models\Provincia;
 
 class MonumentoController extends Controller
 {
 
     public function crud(){
+      $users=User::all();
       $monumentos = Monumento::all();
-      return view('crud',compact('monumentos'));
+      $provincias = Provincia::all();
+      return view('crud',compact('monumentos','users','provincias'));
     }
 
 
@@ -44,7 +47,7 @@ class MonumentoController extends Controller
      */
     public function store(MonumentoRequest $request)
     {
-      // dd($request->all());
+      dd($request);
       Monumento::create($request->all());
 
       return redirect()->route('monumentos.index')->with('success', __('Monument created successfully'));
