@@ -1,0 +1,14 @@
+https://github.com/wire-elements/modal
+https://github.com/wire-elements/modal/tree/1.0.0
+Instalamos el paquete de extension 
+composer require wire-elements/modal
+
+Ahora copiamos la directiva 
+@livewire('livewire-ui-modal')
+En nuestro layout principal
+
+Añadimos esto a vendor para poder modificar el framework css
+php artisan vendor:publish --tag=livewire-ui-modal-views
+
+Al crear el componente, abrimos el controlador del componente, y cambiamos la extensionen lgar de extender de component 
+le indicamos que extiende de ModalComponent.

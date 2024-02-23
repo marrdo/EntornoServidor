@@ -8,10 +8,13 @@ use Livewire\Component;
 
 class TableMonument extends Component
 {
-    // public $monumentos = Monumento::all();
+    
     public Collection $monumentos;
-    public $mostrarModal = false;
-    public $monumentoSeleccionado;
+    public $nombre;
+    public $aforo;
+    public $provincia;
+    public $user;
+    
 
     public function mount($monumentos){
         $this->monumentos = $monumentos;
@@ -23,12 +26,16 @@ class TableMonument extends Component
         //actualizamos la lista de monumentos almacenando los monumentos de neuvo despues de haber eliminado el último.
     }
 
-    public function mostraModal($monumentoID)
-    {
-        $this->monumentoSeleccionado = $monumentoID;
-        $this->mostrarModal = true;
+    public function update($id){
+        $monumento = Monumento::findOrFail($id);
+        dd($this->nombre, $this->aforo, $this->provincia, $this->user);
+        $monumento->update([
+            'nombre'=> $this->nombre,
+            'aforo'=>$this->aforo,
+            'provincia'=>$this->provincia,
+            'user_id'=>$this->user
+        ]);
     }
-
     public function render()
     {
         return view('livewire.table-monument');

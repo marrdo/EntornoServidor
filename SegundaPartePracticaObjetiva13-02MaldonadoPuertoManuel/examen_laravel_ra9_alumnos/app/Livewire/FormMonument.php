@@ -4,6 +4,7 @@ namespace App\Livewire;
 
 use App\Models\Monumento;
 use App\Models\User;
+use Livewire\Attributes\Rule;
 use Livewire\Component;
 
 class FormMonument extends Component
@@ -15,10 +16,16 @@ class FormMonument extends Component
     public $users;
     public $provincias;
     // Store
+    #[Rule('required|min:2|max:70')]
     public $nombre;
+    #[Rule('required')]
     public $aforo;
+    #[Rule('required|integer')]
     public $provinciaId;
+    #[Rule('required|integer')]
     public $userId;
+    // Listeners
+
 
 
     public function mount($monumentos = [], $users = [], $provincias = [])
@@ -27,7 +34,6 @@ class FormMonument extends Component
         $this->users = $users;
         $this->provincias = $provincias;
     }
-
 
     public function store()
     {

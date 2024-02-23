@@ -4,22 +4,11 @@ namespace App\Livewire;
 
 use Livewire\Component;
 use App\Models\Monumento;
+use LivewireUI\Modal\ModalComponent;
 
-class UpdateMonumento extends Component
+class UpdateMonumento extends ModalComponent
 {
-    public $monumento;
-    public $monumentoId;
-    protected $listeners = ['closeModal' => 'cerrarModal'];
-    
 
-    public function mount($monumentoId){
-        $this->monumentoId = $monumentoId;
-        $this->monumento = Monumento::findOrFail($monumentoId);
-    }
-
-    public function closeModal(){
-        $this->emit('closeModal');
-    }
 
     public function render()
     {
