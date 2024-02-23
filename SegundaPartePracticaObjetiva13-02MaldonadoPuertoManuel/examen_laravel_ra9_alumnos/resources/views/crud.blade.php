@@ -11,6 +11,8 @@
     :provincias="$provincias" />
     
     <livewire:table-monument 
-    :monumentos="$monumentos"  />
+    :monumentos="$monumentos"
+    :users="$users" 
+    :provincias="$provincias"  />
 
 </x-app-layout>
