@@ -17,13 +17,13 @@ class FormMonument extends Component
     public $provincias;
     // Store
     #[Rule('required|min:2|max:70')]
-    public $nombre;
+    public $nombre="";
     #[Rule('required')]
-    public $aforo;
+    public $aforo= "";
     #[Rule('required|integer')]
-    public $provinciaId;
+    public $provinciaId="";
     #[Rule('required|integer')]
-    public $userId;
+    public $userId="";
     // Listeners
 
 
@@ -45,7 +45,9 @@ class FormMonument extends Component
             'user_id' => $this->userId
         ]);
         // dd($this->nombre, $this->aforo, $this->provinciaId, $this->userId);
-        $this->feedback = "Monumento creado";
+        $this->reset(['nombre','aforo','provinciaId','userId']);
+        session()->flash('succes', 'Monumento creado satisfactoriamente!!');
+        $this->dispatch('monumento-creado');
     }
 
     public function render()

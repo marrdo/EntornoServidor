@@ -30,7 +30,7 @@ class Monumento extends Model
     }
 
     public function phone(){
-      return $this->hasOneThrough(Phone::class,User::class,'phone_id','id');
+      return $this->hasOneThrough(Phone::class,User::class,'phone_id','user_id','id','id');
       
     }
     public function user(){

@@ -6,13 +6,15 @@
     </x-slot>
 
     <livewire:form-monument 
+    
     :monumentos="$monumentos" 
     :users="$users" 
     :provincias="$provincias" />
     
     <livewire:table-monument 
+    
     :monumentos="$monumentos"
     :users="$users" 
     :provincias="$provincias"  />
-
+    
 </x-app-layout>

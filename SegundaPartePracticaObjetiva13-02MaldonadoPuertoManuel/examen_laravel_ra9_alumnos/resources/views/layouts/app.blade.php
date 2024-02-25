@@ -33,5 +33,14 @@
             </main>
         </div>
 
+        <script>
+            // Espera 3 segundos y luego oculta el mensaje de retroalimentación
+            setTimeout(() => {
+                const feedbackMessage = document.getElementById('feedback-message');
+                if (feedbackMessage) {
+                    feedbackMessage.style.display = 'none';
+                }
+            }, 3000); // Cambia 3000 a 4000 si deseas que desaparezca después de 4 segundos
+        </script>
     </body>
 </html>
