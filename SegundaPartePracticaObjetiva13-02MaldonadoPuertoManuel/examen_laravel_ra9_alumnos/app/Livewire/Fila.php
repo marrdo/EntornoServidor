@@ -69,7 +69,8 @@ class Fila extends Component
             'provincia' => $this->provincia,
             'user_id' => $this->user
         ]);
-        $this->updateView($this->monumento->id);
+        $this->dispatch('updateModal',$this->monumento->id);
+        // $this->updateView($this->monumento->id);
     }
 
     public function showModal()
