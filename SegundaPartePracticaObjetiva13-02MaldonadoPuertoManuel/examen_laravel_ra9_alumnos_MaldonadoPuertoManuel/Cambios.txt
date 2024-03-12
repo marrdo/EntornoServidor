@@ -1,0 +1,14 @@
+Monumento(1) -> (1)Responsable (1) -> (1)phone
+
+Se han quitado los foreach pro los que salian repetidos en el index los monuemtnos repetidos 3 veces.
+
+Modificador	Descripción	Ejemplo
+.live	Envía actualizaciones mientras el usuario escribe	<input type="text" wire:model.live="search">
+.blur	Envía actualizaciones solo cuando el elemento pierde el foco (evento blur)	<input type="text" wire:model.blur="username">
+.change	Envía actualizaciones solo cuando el valor del elemento cambia (evento change)	<select wire:model.change="selectedOption">
+.lazy	Un alias para .change, envía actualizaciones cuando el valor del elemento cambia (evento change)	<input type="text" wire:model.lazy="email">
+.debounce.[?]ms	Retrasa el envío de actualizaciones por el número de milisegundos especificado	<input type="text" wire:model.debounce.500ms="search">
+.throttle.[?]ms	Limita la frecuencia de las actualizaciones de red al intervalo de tiempo especificado en milisegundos	<input type="text" wire:model.throttle.2000ms="search">
+.number	Convierte el valor de texto de un campo de entrada a un entero en el servidor	<input type="text" wire:model.number="quantity">
+.boolean	Convierte el valor de texto de un campo de entrada a un booleano en el servidor	<input type="checkbox" wire:model.boolean="isActive">
+.fill	Utiliza el valor inicial proporcionado por el atributo "value" en la carga de la página	<input type="text" value="Initial Value" wire:model.fill="inputValue">
